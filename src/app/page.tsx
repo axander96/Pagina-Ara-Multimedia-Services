@@ -20,7 +20,7 @@ import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
-export const revalidate = 60 // Revalidar cada 60 segundos
+export const revalidate = 10 // Revalidar cada 10 segundos para ver cambios de Sanity más rápido
 
 export default async function Home() {
   // Fetch all data from Sanity
