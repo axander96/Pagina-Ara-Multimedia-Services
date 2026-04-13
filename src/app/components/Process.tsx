@@ -107,7 +107,7 @@ export default function Process({ steps }: ProcessProps) {
                       {iconSvg}
                     </div>
                     <div className="ml-24 lg:ml-0 lg:w-1/2 lg:pl-12">
-                      <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-[10px]">
                         <span className="text-[#FF4433] font-bold">PASO {step.stepNumber}</span>
                         <h3 className="text-xl font-bold text-[#003D99] mt-2">{step.title}</h3>
                         <p className="text-gray-600 mt-2 text-sm">{step.description}</p>
@@ -117,7 +117,7 @@ export default function Process({ steps }: ProcessProps) {
                 ) : (
                   <>
                     <div className="ml-24 lg:ml-0 lg:w-1/2 lg:pr-12 lg:text-right order-2 lg:order-1">
-                      <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-[10px]">
                         <span className="text-[#0066FF] font-bold">PASO {step.stepNumber}</span>
                         <h3 className="text-xl font-bold text-[#003D99] mt-2">{step.title}</h3>
                         <p className="text-gray-600 mt-2 text-sm">{step.description}</p>

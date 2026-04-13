@@ -42,7 +42,7 @@ export default function Projects({ projects }: ProjectsProps) {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
+              className="rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-transform duration-500 hover:-translate-y-[10px]"
             >
               {project.isAraProject ? (
                 <div className="relative h-80 bg-gradient-to-br from-[#0066FF] to-[#FF4433] group-hover:scale-105 transition-transform duration-500">

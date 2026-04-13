@@ -91,7 +91,7 @@ export default function Services({ services }: ServicesProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-2xl p-6 cursor-pointer h-[340px] transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-white hover:bg-gradient-to-br hover:from-[#003D99] hover:to-[#0066FF] border border-gray-100"
+                className="group relative rounded-2xl p-6 cursor-pointer h-[340px] transition-all duration-500 hover:shadow-2xl hover:-translate-y-[10px] bg-white hover:bg-gradient-to-br hover:from-[#003D99] hover:to-[#0066FF] border border-gray-100"
               >
                 {/* Icon - Always visible */}
                 <div className={`w-14 h-14 bg-gradient-to-br ${gradientClass} rounded-xl flex items-center justify-center mb-4 shadow-lg text-white group-hover:bg-white/20 group-hover:from-transparent group-hover:to-transparent transition-all duration-500`}>
