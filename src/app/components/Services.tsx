@@ -37,28 +37,50 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`group rounded-2xl p-6 hover:shadow-2xl transition-all cursor-pointer ${
-                index === 0
-                  ? 'bg-[#003D99]/80 text-white border border-white/10'
-                  : 'bg-white/80 text-gray-800 border border-gray-200'
-              }`}
+              className="group relative rounded-2xl p-6 cursor-pointer perspective-1000"
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <i className={`fas ${service.icon} text-2xl ${index === 0 ? '' : 'text-white'}`}></i>
+              {/* Card Inner - Flip effect */}
+              <div className="relative w-full h-full transition-all duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
+                {/* Front */}
+                <div className="bg-white/80 text-gray-800 border border-gray-200 rounded-2xl p-6 backface-hidden group-hover:opacity-0 transition-opacity duration-300">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4`}>
+                    <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-sm mb-4 text-gray-600">
+                    {service.description}
+                  </p>
+                </div>
+                
+                {/* Back - Blue gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#003D99] to-[#0066FF] text-white border border-white/10 rounded-2xl p-6 backface-hidden rotate-y-180 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center">
+                  <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                    <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-sm mb-4 text-white/80">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {service.features?.map((feature, i) => (
+                      <li key={i} className="flex items-center">
+                        <i className="fas fa-check text-[#FF4433] mr-2"></i>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className={`text-sm mb-4 ${index === 0 ? 'text-white/70' : 'text-gray-600'}`}>
-                {service.description}
-              </p>
-              <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-[300px]">
-                <ul className={`space-y-2 text-sm ${index === 0 ? 'text-white/80' : 'text-gray-600'}`}>
-                  {service.features?.map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <i className={`fas fa-check ${index === 0 ? 'text-[#FF4433]' : 'text-[#0066FF]'} mr-2`}></i>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+              
+              {/* Hover fallback for mobile */}
+              <div className="lg:hidden">
+                <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4`}>
+                  <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
+                <p className="text-sm mb-4 text-gray-600">
+                  {service.description}
+                </p>
               </div>
             </motion.div>
           ))}
