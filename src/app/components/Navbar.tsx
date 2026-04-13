@@ -81,9 +81,9 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
             
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden text-white text-2xl"
+              className="lg:hidden text-white text-2xl" aria-label="Menu"
             >
-              <i className="fas fa-bars"></i>
+              <i className="fa-solid fa-bars"></i>
             </button>
           </div>
         </div>
@@ -102,9 +102,9 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
             <div className="p-6">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white text-2xl absolute top-6 right-6"
+                className="text-white text-2xl absolute top-6 right-6" aria-label="Close menu"
               >
-                <i className="fas fa-times"></i>
+                <i className="fa-solid fa-xmark"></i>
               </button>
               <div className="flex flex-col space-y-8 mt-20">
                 {navLinks.map((link) => (

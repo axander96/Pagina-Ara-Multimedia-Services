@@ -66,7 +66,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
               <p className="text-white/90 text-lg italic">&ldquo;{testimonial.quote}&rdquo;</p>
               <div className="flex text-yellow-400 mt-4">
                 {[...Array(testimonial.rating || 5)].map((_, i) => (
-                  <i key={i} className="fas fa-star"></i>
+                  <i key={i} className="fa-solid fa-star"></i>
                 ))}
               </div>
             </div>

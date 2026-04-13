@@ -123,21 +123,21 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-white/80 hover:text-green-400 transition-colors"
             >
-              <i className="fab fa-whatsapp text-2xl"></i>
+              <i className="fa-brands fa-whatsapp text-2xl"></i>
               <span>WhatsApp Business</span>
             </a>
             <a 
               href={`tel:${siteConfig?.phone}`}
               className="flex items-center space-x-2 text-white/80 hover:text-[#0066FF] transition-colors"
             >
-              <i className="fas fa-phone text-xl"></i>
+              <i className="fa-solid fa-phone text-xl"></i>
               <span>Llámanos</span>
             </a>
             <a 
               href={`mailto:${siteConfig?.email}`}
               className="flex items-center space-x-2 text-white/80 hover:text-[#FF4433] transition-colors"
             >
-              <i className="fas fa-envelope text-xl"></i>
+              <i className="fa-solid fa-envelope text-xl"></i>
               <span>{siteConfig?.email}</span>
             </a>
           </motion.div>

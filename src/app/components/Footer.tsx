@@ -39,13 +39,13 @@ export default function Footer({ siteConfig }: FooterProps) {
           
           <div className="flex items-center space-x-4">
             <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#0066FF] transition-colors">
-              <i className="fab fa-facebook-f"></i>
+              <i className="fa-brands fa-facebook-f"></i>
             </a>
             <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#FF4433] transition-colors">
-              <i className="fab fa-instagram"></i>
+              <i className="fa-brands fa-instagram"></i>
             </a>
             <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors">
-              <i className="fab fa-linkedin-in"></i>
+              <i className="fa-brands fa-linkedin-in"></i>
             </a>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function Footer({ siteConfig }: FooterProps) {
         rel="noopener noreferrer"
         className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg hover:bg-green-600 transition-colors animate-bounce lg:hidden"
       >
-        <i className="fab fa-whatsapp"></i>
+        <i className="fa-brands fa-whatsapp"></i>
       </a>
     </footer>
   )

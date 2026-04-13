@@ -77,7 +77,7 @@ export default function About({ about }: AboutProps) {
               {about.features?.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   <div className={`w-6 h-6 ${index % 2 === 0 ? 'bg-[#FF4433]' : 'bg-[#0066FF]'} rounded-full flex items-center justify-center flex-shrink-0 mt-1`}>
-                    <i className="fas fa-check text-white text-xs"></i>
+                    <i className="fa-solid fa-check text-white text-xs"></i>
                   </div>
                   <div>
                     <h4 className="font-bold text-[#003D99]">{feature.title}</h4>

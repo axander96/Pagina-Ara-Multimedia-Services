@@ -46,7 +46,7 @@ export default function Services({ services }: ServicesProps) {
               {/* Default State */}
               <div className="absolute inset-0 rounded-2xl p-6 transition-opacity duration-500 group-hover:opacity-0">
                 <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
-                  <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                  <i className={`fa-solid ${service.icon} text-2xl text-white`}></i>
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
                 <p className="text-sm mb-4 text-gray-600">
@@ -62,7 +62,7 @@ export default function Services({ services }: ServicesProps) {
                 }}
               >
                 <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
-                  <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                  <i className={`fa-solid ${service.icon} text-2xl text-white`}></i>
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-white">{service.title}</h3>
                 <p className="text-sm mb-4 text-white/90">
@@ -71,7 +71,7 @@ export default function Services({ services }: ServicesProps) {
                 <ul className="space-y-2 text-sm">
                   {service.features?.map((feature, i) => (
                     <li key={i} className="flex items-center text-white/95">
-                      <i className="fas fa-check text-[#FF4433] mr-2"></i>
+                      <i className="fa-solid fa-check text-[#FF4433] mr-2"></i>
                       {feature}
                     </li>
                   ))}
