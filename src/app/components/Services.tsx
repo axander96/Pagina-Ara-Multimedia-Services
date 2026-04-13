@@ -108,11 +108,11 @@ export default function Services({ services }: ServicesProps) {
                   {service.description}
                 </p>
                 
-                {/* Features - Show on hover */}
-                <ul className="space-y-2 text-sm opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[200px] transition-all duration-500 overflow-hidden">
-                  {service.features?.map((feature, i) => (
-                    <li key={i} className="flex items-center text-white/95">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2 text-[#FF4433]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {/* Features - Always visible */}
+                <ul className="space-y-2 text-sm">
+                  {service.features?.slice(0, 3).map((feature, i) => (
+                    <li key={i} className="flex items-center text-gray-600 group-hover:text-white/90 transition-colors duration-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2 text-[#0066FF] group-hover:text-[#FF4433] transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {feature}
