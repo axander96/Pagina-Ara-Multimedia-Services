@@ -42,10 +42,10 @@ export default function Projects({ projects }: ProjectsProps) {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg group"
+              className="rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
             >
               {project.isAraProject ? (
-                <div className="relative h-80 bg-gradient-to-br from-[#0066FF] to-[#FF4433]">
+                <div className="relative h-80 bg-gradient-to-br from-[#0066FF] to-[#FF4433] group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                     <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
                       PROYECTO PROPIO
@@ -58,23 +58,24 @@ export default function Projects({ projects }: ProjectsProps) {
                   </div>
                 </div>
               ) : (
-                <div className="relative h-80">
+                <div className="relative h-80 overflow-hidden">
                   {project.image ? (
                     <Image
                       src={`https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${project.image.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}`}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                       <span className="text-gray-400">Sin imagen</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#003D99]/95 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-[#FF4433] font-semibold text-sm">{project.category}</span>
-                    <h3 className="text-white text-2xl font-bold">{project.title}</h3>
-                    <p className="text-white/80 text-sm mt-2">{project.metric}</p>
+                  {/* Overlay with text - ALWAYS visible with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#003D99] via-[#003D99]/70 to-transparent flex flex-col justify-end p-6">
+                    <span className="text-[#FF4433] font-semibold text-sm mb-1">{project.category}</span>
+                    <h3 className="text-white text-2xl font-bold mb-1">{project.title}</h3>
+                    <p className="text-white/80 text-sm">{project.metric}</p>
                   </div>
                 </div>
               )}
