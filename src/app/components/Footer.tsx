@@ -9,7 +9,6 @@ interface FooterProps {
     slogan: string
     email: string
     socialLinks?: {
-      facebook?: string
       instagram?: string
       linkedin?: string
       youtube?: string
