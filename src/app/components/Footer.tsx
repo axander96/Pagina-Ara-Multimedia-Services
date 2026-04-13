@@ -12,12 +12,27 @@ interface FooterProps {
       facebook?: string
       instagram?: string
       linkedin?: string
+      youtube?: string
     }
   }
 }
 
+// URLs por defecto de las redes sociales
+const DEFAULT_SOCIAL_URLS = {
+  instagram: 'https://www.instagram.com/aramultimediaservices?igsh=MTdiN3k1eTA2N3g2MA==',
+  linkedin: 'https://www.linkedin.com/in/alexander-rodriguez-a-1621a5353?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+  youtube: 'https://youtube.com/@aramultimediaservices?si=WXMm7oxnBwke-hHe',
+}
+
 export default function Footer({ siteConfig }: FooterProps) {
   const currentYear = new Date().getFullYear()
+  
+  // Usar URLs de Sanity o las por defecto
+  const socialLinks = {
+    instagram: siteConfig?.socialLinks?.instagram || DEFAULT_SOCIAL_URLS.instagram,
+    linkedin: siteConfig?.socialLinks?.linkedin || DEFAULT_SOCIAL_URLS.linkedin,
+    youtube: siteConfig?.socialLinks?.youtube || DEFAULT_SOCIAL_URLS.youtube,
+  }
 
   return (
     <footer className="bg-[#003D99] border-t border-white/10 py-12">
@@ -43,30 +58,39 @@ export default function Footer({ siteConfig }: FooterProps) {
           </p>
           
           <div className="flex items-center space-x-4">
-            <a 
-              href={siteConfig?.socialLinks?.facebook || '#'} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#0066FF] transition-colors"
-            >
-              <i className="fa-brands fa-facebook-f"></i>
-            </a>
-            <a 
-              href={siteConfig?.socialLinks?.instagram || '#'} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#FF4433] transition-colors"
-            >
-              <i className="fa-brands fa-instagram"></i>
-            </a>
-            <a 
-              href={siteConfig?.socialLinks?.linkedin || '#'} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors"
-            >
-              <i className="fa-brands fa-linkedin-in"></i>
-            </a>
+            {socialLinks.instagram && (
+              <a 
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#FF4433] transition-colors"
+                aria-label="Instagram"
+              >
+                <i className="fa-brands fa-instagram"></i>
+              </a>
+            )}
+            {socialLinks.linkedin && (
+              <a 
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <i className="fa-brands fa-linkedin-in"></i>
+              </a>
+            )}
+            {socialLinks.youtube && (
+              <a 
+                href={socialLinks.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
+                aria-label="YouTube"
+              >
+                <i className="fa-brands fa-youtube"></i>
+              </a>
+            )}
           </div>
         </div>
         
