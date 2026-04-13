@@ -37,50 +37,45 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative rounded-2xl p-6 cursor-pointer perspective-1000"
+              className="group relative rounded-2xl p-6 cursor-pointer h-[320px] transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,247,250,0.9) 100%)',
+                border: '1px solid rgba(0,102,255,0.1)'
+              }}
             >
-              {/* Card Inner - Flip effect */}
-              <div className="relative w-full h-full transition-all duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                {/* Front */}
-                <div className="bg-white/80 text-gray-800 border border-gray-200 rounded-2xl p-6 backface-hidden group-hover:opacity-0 transition-opacity duration-300">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4`}>
-                    <i className={`fas ${service.icon} text-2xl text-white`}></i>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-sm mb-4 text-gray-600">
-                    {service.description}
-                  </p>
-                </div>
-                
-                {/* Back - Blue gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#003D99] to-[#0066FF] text-white border border-white/10 rounded-2xl p-6 backface-hidden rotate-y-180 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center">
-                  <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                    <i className={`fas ${service.icon} text-2xl text-white`}></i>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-sm mb-4 text-white/80">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2 text-sm text-white/90">
-                    {service.features?.map((feature, i) => (
-                      <li key={i} className="flex items-center">
-                        <i className="fas fa-check text-[#FF4433] mr-2"></i>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              
-              {/* Hover fallback for mobile */}
-              <div className="lg:hidden">
-                <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4`}>
+              {/* Default State */}
+              <div className="absolute inset-0 rounded-2xl p-6 transition-opacity duration-500 group-hover:opacity-0">
+                <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
                   <i className={`fas ${service.icon} text-2xl text-white`}></i>
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
                 <p className="text-sm mb-4 text-gray-600">
                   {service.description}
                 </p>
+              </div>
+              
+              {/* Hover State - Blue gradient */}
+              <div 
+                className="absolute inset-0 rounded-2xl p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, #003D99 0%, #0066FF 100%)'
+                }}
+              >
+                <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                  <i className={`fas ${service.icon} text-2xl text-white`}></i>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">{service.title}</h3>
+                <p className="text-sm mb-4 text-white/90">
+                  {service.description}
+                </p>
+                <ul className="space-y-2 text-sm">
+                  {service.features?.map((feature, i) => (
+                    <li key={i} className="flex items-center text-white/95">
+                      <i className="fas fa-check text-[#FF4433] mr-2"></i>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
