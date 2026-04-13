@@ -62,8 +62,8 @@ export default function Process({ steps }: ProcessProps) {
                 {isEven ? (
                   <>
                     <div className="hidden lg:block lg:w-1/2 lg:pr-12 lg:text-right"></div>
-                    <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg">
-                      <i className={`fas ${step.icon}`}></i>
+                    <div className={`absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br ${step.color || 'from-ara-blue to-ara-red'} rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg`}>
+                      <i className={`fas ${step.icon} text-2xl`}></i>
                     </div>
                     <div className="ml-24 lg:ml-0 lg:w-1/2 lg:pl-12">
                       <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
@@ -82,8 +82,8 @@ export default function Process({ steps }: ProcessProps) {
                         <p className="text-gray-600 mt-2 text-sm">{step.description}</p>
                       </div>
                     </div>
-                    <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg">
-                      <i className={`fas ${step.icon}`}></i>
+                    <div className={`absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br ${step.color || 'from-ara-blue to-ara-red'} rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg`}>
+                      <i className={`fas ${step.icon} text-2xl`}></i>
                     </div>
                     <div className="hidden lg:block lg:w-1/2 lg:pl-12 order-1 lg:order-2"></div>
                   </>
