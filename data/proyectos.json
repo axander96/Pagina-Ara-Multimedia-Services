@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Tienda Online Moda",
+      "category": "E-commerce",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      "metric": "+150% aumento en ventas online",
+      "featured": false
+    },
+    {
+      "id": 2,
+      "title": "App Delivery Local",
+      "category": "App Móvil",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
+      "metric": "10K descargas primera semana",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Restaurante Cadena",
+      "category": "Campaña Digital",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      "metric": "+300% tráfico en redes sociales",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Consultora Financiera",
+      "category": "Web Corporativa",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
+      "metric": "Posicionamiento #1 en Google",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Startup Tecnológica",
+      "category": "Branding",
+      "image": "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=600&h=400&fit=crop",
+      "metric": "Identidad completa + Web",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Proyecto ARA",
+      "category": "Proyecto Propio",
+      "image": "",
+      "metric": "Nuestra plataforma de gestión",
+      "featured": true,
+      "is_ara_project": true
+    }
+  ]
+}

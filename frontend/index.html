@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">ARA Multimedia Services | Tu evolución digital en movimiento</title>
+    <meta name="description" content="Agencia digital especializada en desarrollo web, publicidad digital, social media, apps móviles y SEO. Transformamos tu presencia digital.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ara-blue': '#0066FF',
+                        'ara-red': '#FF4433',
+                        'ara-dark': '#003D99',
+                        'ara-gray': '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        
+        /* Pantalla de Carga */
+        .loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0066FF 0%, #FF4433 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-logo { position: relative; width: 120px; height: 120px; animation: breathe 2s ease-in-out infinite; }
+        .loader-logo svg { width: 100%; height: 100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3)); }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .loader-ring { animation: spin 2s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Fondo Degradado Morphing */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0066FF, #FF4433, #003D99, #0066FF);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        /* Partículas */
+        .particle { position: absolute; width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) translateX(50px); opacity: 0; } }
+        
+        /* Efecto Glassmorphism */
+        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+        .glass-dark { background: rgba(0,61,153,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        
+        /* Botón Magnético */
+        .magnetic-btn { position: relative; transition: transform 0.3s ease; }
+        
+        /* Tarjeta Inclinación 3D */
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease; }
+        
+        /* Barra de Desplazamiento Personalizada */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #0066FF, #FF4433); border-radius: 5px; }
+        
+        /* Carrusel de Testimonios */
+        .testimonial-track { animation: scroll 30s linear infinite; }
+        .testimonial-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* Efecto Brillo */
+        .shine { position: relative; overflow: hidden; }
+        .shine::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transform: rotate(30deg) translateX(-100%); transition: transform 0.6s; }
+        .shine:hover::after { transform: rotate(30deg) translateX(100%); }
+        
+        /* Expansión de Tarjeta de Servicio */
+        .service-card .service-details { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .service-card:hover .service-details { max-height: 300px; }
+        
+        /* Efecto Parallax */
+        .parallax { will-change: transform; }
+        
+        /* Navegación */
+        .nav-transparent { background: transparent; }
+        .nav-solid { background: rgba(0,61,153,0.95); backdrop-filter: blur(10px); }
+        
+        /* Menú Móvil */
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-menu.open { transform: translateX(0); }
+        
+        /* Tarjeta de Portafolio */
+        .portfolio-card { position: relative; overflow: hidden; }
+        .portfolio-card img { transition: transform 0.5s ease; }
+        .portfolio-card:hover img { transform: scale(1.1); }
+        .portfolio-overlay { background: linear-gradient(to top, rgba(0,61,153,0.95), transparent); }
+        
+        /* Animación de Contador */
+        .counter-value { font-variant-numeric: tabular-nums; }
+        
+        /* Paso del Proceso */
+        .process-step { opacity: 0; transform: translateY(30px); }
+        .process-step.visible { opacity: 1; transform: translateY(0); transition: all 0.6s ease; }
+        
+        /* Animación de Revelado */
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .reveal.active { opacity: 1; transform: translateY(0); transition: all 0.8s ease; }
+        
+        /* Efecto Máquina de Escribir */
+        .typewriter-cursor { animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        /* Widget ARA Pulse */
+        .ara-pulse { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        
+        /* WhatsApp Flotante */
+        .whatsapp-float { animation: float-wa 3s ease-in-out infinite; }
+        @keyframes float-wa { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Pantalla de Carga -->
+    <div class="loader" id="loader">
+        <div class="loader-logo">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="55" stroke="white" stroke-width="3" opacity="0.3" class="loader-ring"/>
+                <circle cx="60" cy="60" r="48" stroke="white" stroke-width="2" opacity="0.5"/>
+                <text x="60" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="42" fill="white">ARA</text>
+                <circle cx="60" cy="20" r="4" fill="#FF4433"/>
+                <circle cx="60" cy="100" r="4" fill="#FF4433"/>
+                <circle cx="20" cy="60" r="4" fill="white"/>
+                <circle cx="100" cy="60" r="4" fill="white"/>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Navegación -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 nav-transparent">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center space-x-2">
+                    <span class="text-3xl font-black text-white" id="nav-logo">ARA</span>
+                    <span class="text-xs text-white/80 hidden sm:block" id="nav-slogan">MULTIMEDIA<br>SERVICES</span>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#servicios" class="text-white/90 hover:text-white font-medium transition-colors">Servicios</a>
+                    <a href="#portafolio" class="text-white/90 hover:text-white font-medium transition-colors">Portafolio</a>
+                    <a href="#proceso" class="text-white/90 hover:text-white font-medium transition-colors">Proceso</a>
+                    <a href="#nosotros" class="text-white/90 hover:text-white font-medium transition-colors">Nosotros</a>
+                    <a href="#contacto" class="magnetic-btn px-6 py-3 bg-gradient-to-r from-ara-red to-ara-blue text-white font-semibold rounded-full hover:shadow-lg hover:shadow-ara-red/30 transition-all shine" id="nav-cta">
+                        Cotizar Proyecto
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full h-screen bg-ara-dark lg:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu" class="text-white text-2xl absolute top-6 right-6">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex flex-col space-y-8 mt-20">
+                    <a href="#servicios" class="text-white text-2xl font-semibold mobile-link">Servicios</a>
+                    <a href="#portafolio" class="text-white text-2xl font-semibold mobile-link">Portafolio</a>
+                    <a href="#proceso" class="text-white text-2xl font-semibold mobile-link">Proceso</a>
+                    <a href="#nosotros" class="text-white text-2xl font-semibold mobile-link">Nosotros</a>
+                    <a href="#contacto" class="text-ara-red text-2xl font-semibold mobile-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- SECCIÓN HERO -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-bg">
+        <div id="particles" class="absolute inset-0 pointer-events-none"></div>
+        <div id="mouse-light" class="absolute inset-0 pointer-events-none opacity-30"></div>
+        
+        <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
+            <div class="mb-8 parallax" data-speed="0.5"></div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight">
+                <span class="block overflow-hidden">
+                    <span class="inline-block reveal-text" id="hero-title-1">TRANSFORMA TU</span>
+                </span>
+                <span class="block overflow-hidden">
+                    <span class="inline-block reveal-text text-ara-red" id="hero-title-2">PRESENCIA DIGITAL</span>
+                </span>
+            </h1>
+            
+            <div class="h-8 sm:h-10 mb-6">
+                <p class="text-lg sm:text-2xl text-white/90 font-medium">
+                    <span id="typewriter"></span><span class="typewriter-cursor">|</span>
+                </p>
+            </div>
+            
+            <p class="text-white/80 text-base sm:text-lg max-w-2xl mx-auto mb-10 px-4" id="hero-subtitle">
+                Creamos experiencias digitales que convierten visitantes en clientes reales. Desde tu primera web hasta tu app empresarial.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
+                <a href="#contacto" class="magnetic-btn w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-ara-red to-ara-blue text-white font-bold rounded-full text-lg hover:shadow-2xl hover:shadow-ara-red/40 transition-all transform hover:-translate-y-1 shine" id="hero-cta-primary">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Quiero cotizar mi proyecto
+                </a>
+                <a href="#portafolio" class="magnetic-btn w-full sm:w-auto px-8 py-4 border-2 border-white text-white font-bold rounded-full text-lg hover:bg-white hover:text-ara-dark transition-all transform hover:-translate-y-1" id="hero-cta-secondary">
+                    <i class="fas fa-eye mr-2"></i>
+                    Ver nuestros proyectos
+                </a>
+            </div>
+            
+            <p class="mt-12 text-white/60 text-sm tracking-widest uppercase" id="footer-slogan">"Tu evolución digital en movimiento"</p>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN SERVICIOS -->
+    <section id="servicios" class="py-20 lg:py-32 bg-ara-gray">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ara-red font-semibold tracking-widest uppercase text-sm">Nuestros Servicios</span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-ara-dark mt-4">
+                    Soluciones <span class="text-ara-blue">Digitales</span> Completas
+                </h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Todo lo que necesitas para triunfar en el mundo digital, en un solo lugar.
+                </p>
+            </div>
+            
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Servicios cargados dinámicamente -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN PORTAFOLIO -->
+    <section id="portafolio" class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ara-blue font-semibold tracking-widest uppercase text-sm">Nuestro Trabajo</span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-ara-dark mt-4">
+                    Proyectos que <span class="text-ara-red">brillan</span>
+                </h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Cada proyecto es una historia de éxito. Estos son algunos de nuestros favoritos.
+                </p>
+            </div>
+            
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Proyectos cargados dinámicamente -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN PROCESO ARA -->
+    <section id="proceso" class="py-20 lg:py-32 bg-ara-gray">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ara-red font-semibold tracking-widest uppercase text-sm">Cómo Trabajamos</span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-ara-dark mt-4">
+                    De la idea al <span class="text-ara-blue">crecimiento</span>
+                </h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Un proceso probado que garantiza resultados excepcionales en cada proyecto.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative">
+                <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-gray-300 transform lg:-translate-x-1/2">
+                    <div id="timeline-progress" class="w-full bg-gradient-to-b from-ara-red to-ara-blue transition-all duration-300" style="height: 0%"></div>
+                </div>
+                
+                <div id="process-list">
+                    <!-- Pasos del proceso cargados dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN SOBRE NOSOTROS -->
+    <section id="nosotros" class="py-20 lg:py-32 bg-white overflow-hidden">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 reveal">
+                    <span class="text-ara-blue font-semibold tracking-widest uppercase text-sm">Quiénes Somos</span>
+                    <h2 class="text-4xl sm:text-5xl font-black text-ara-dark mt-4 mb-6" id="about-title">
+                        No creamos solo <span class="text-ara-red">páginas web</span>, creamos <span class="text-ara-blue">máquinas de ventas</span> digitales
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-6" id="about-description">
+                        Nacimos de la necesidad de ver negocios locales crecer en el mundo digital. En ARA no somos solo proveedores, somos socios estratégicos en tu evolución digital.
+                    </p>
+                    
+                    <div id="about-features" class="grid grid-cols-2 gap-4 mt-8">
+                        <!-- Características cargadas dinámicamente -->
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-ara-blue to-ara-red rounded-3xl"></div>
+                        <img id="about-image" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" alt="Equipo ARA" class="relative rounded-3xl shadow-2xl w-full">
+                        
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden sm:block">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <span class="counter-value text-3xl font-black text-ara-red" data-target="50" id="stat-projects">0</span>
+                                    <span class="text-ara-red text-2xl font-bold">+</span>
+                                    <p class="text-xs text-gray-600">Proyectos</p>
+                                </div>
+                                <div class="w-px h-12 bg-gray-200"></div>
+                                <div class="text-center">
+                                    <span class="counter-value text-3xl font-black text-ara-blue" data-target="5" id="stat-years">0</span>
+                                    <span class="text-ara-blue text-2xl font-bold">+</span>
+                                    <p class="text-xs text-gray-600">Años Exp.</p>
+                                </div>
+                                <div class="w-px h-12 bg-gray-200"></div>
+                                <div class="text-center">
+                                    <span class="counter-value text-3xl font-black text-ara-red" data-target="98" id="stat-satisfaction">0</span>
+                                    <span class="text-ara-red text-2xl font-bold">%</span>
+                                    <p class="text-xs text-gray-600">Satisfacción</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN TESTIMONIOS -->
+    <section class="py-20 lg:py-32 bg-ara-dark overflow-hidden">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mb-12">
+            <div class="text-center reveal">
+                <span class="text-ara-red font-semibold tracking-widest uppercase text-sm">Testimonios</span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-4">
+                    Clientes <span class="text-ara-blue">satisfechos</span>
+                </h2>
+            </div>
+        </div>
+        
+        <div class="relative">
+            <div id="testimonials-track" class="testimonial-track flex space-x-6 w-max">
+                <!-- Testimonios cargados dinámicamente -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN CTA + CONTACTO -->
+    <section id="contacto" class="py-20 lg:py-32 bg-ara-dark relative overflow-hidden">
+        <div id="contact-particles" class="absolute inset-0 pointer-events-none"></div>
+        
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6" id="contact-title">
+                    ¿LISTO PARA TU <span class="text-ara-red">EVOLUCIÓN</span> DIGITAL?
+                </h2>
+                <p class="text-white/80 text-lg mb-10" id="contact-subtitle">
+                    Cuéntanos sobre tu proyecto y te enviaremos una propuesta gratuita en menos de 24 horas.
+                </p>
+                
+                <form class="max-w-xl mx-auto mb-12" id="contact-form">
+                    <div class="flex flex-col gap-4">
+                        <input type="email" id="contact-email-field" placeholder="Tu correo electrónico" required
+                            class="w-full px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-ara-red focus:ring-2 focus:ring-ara-red/50 transition-all">
+                        <textarea id="contact-message-field" placeholder="Cuéntanos sobre tu proyecto..." rows="4" required
+                            class="w-full px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-ara-red focus:ring-2 focus:ring-ara-red/50 transition-all resize-none"></textarea>
+                        <button type="submit" class="shine px-8 py-4 bg-gradient-to-r from-ara-red to-ara-blue text-white font-bold rounded-full hover:shadow-2xl hover:shadow-ara-red/40 transition-all transform hover:-translate-y-1" id="contact-button">
+                            Quiero mi propuesta
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a id="whatsapp-link" href="https://wa.me/1234567890" target="_blank" class="flex items-center space-x-2 text-white/80 hover:text-green-400 transition-colors">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span>WhatsApp Business</span>
+                    </a>
+                    <a id="phone-link" href="tel:+1234567890" class="flex items-center space-x-2 text-white/80 hover:text-ara-blue transition-colors">
+                        <i class="fas fa-phone text-xl"></i>
+                        <span>Llámanos</span>
+                    </a>
+                    <a id="email-link" href="mailto:info@aranultimedias.com" class="flex items-center space-x-2 text-white/80 hover:text-ara-red transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                        <span id="footer-email">info@aranultimedias.com</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="fixed bottom-6 right-6 z-40 hidden lg:block">
+                <div class="ara-pulse bg-white rounded-2xl shadow-2xl p-4 max-w-xs">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="font-bold text-ara-dark text-sm">ARA Pulse</span>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p>🔥 <span class="font-semibold text-ara-red" id="pulse-projects">3 proyectos</span> en desarrollo hoy</p>
+                        <p>📈 <span class="font-semibold text-ara-blue" id="pulse-growth">+500%</span> crecimiento promedio</p>
+                        <p>⚡ Respuesta en <span class="font-semibold" id="pulse-response">&lt; 2 horas</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-ara-dark border-t border-white/10 py-12">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-2">
+                    <span class="text-3xl font-black text-white" id="footer-logo">ARA</span>
+                    <span class="text-xs text-white/60">MULTIMEDIA<br>SERVICES</span>
+                </div>
+                
+                <p class="text-white/60 text-sm" id="footer-slogan-2">
+                    "Tu evolución digital en movimiento"
+                </p>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-ara-blue transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-ara-red transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10 text-center">
+                <p class="text-white/40 text-sm">
+                    © 2024 <span id="copyright-name">ARA Multimedia Services</span>. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Botón Flotante WhatsApp -->
+    <a id="whatsapp-float" href="https://wa.me/1234567890" target="_blank" class="whatsapp-float fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg hover:bg-green-600 transition-colors lg:hidden">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Datos del CMS
+        let cmsData = {
+            config: null,
+            services: [],
+            projects: [],
+            process: [],
+            testimonials: []
+        };
+
+        // Cargar todos los datos del CMS
+        async function loadCMSData() {
+            try {
+                const [config, services, projects, process, testimonials] = await Promise.all([
+                    fetch('../data/config.json').then(r => r.json()),
+                    fetch('../data/servicios.json').then(r => r.json()),
+                    fetch('../data/proyectos.json').then(r => r.json()),
+                    fetch('../data/proceso.json').then(r => r.json()),
+                    fetch('../data/testimonios.json').then(r => r.json())
+                ]);
+
+                cmsData.config = config;
+                cmsData.services = services.services;
+                cmsData.projects = projects.projects;
+                cmsData.process = process.process;
+                cmsData.testimonials = testimonials.testimonials;
+
+                renderAll();
+            } catch (error) {
+                console.error('Error cargando datos del CMS:', error);
+            }
+        }
+
+        function renderAll() {
+            if (!cmsData.config) return;
+
+            // Configuración general
+            document.title = `${cmsData.config.site.name} | ${cmsData.config.site.slogan}`;
+            document.getElementById('nav-logo').textContent = cmsData.config.site.logo;
+            document.getElementById('footer-logo').textContent = cmsData.config.site.logo;
+            document.getElementById('copyright-name').textContent = cmsData.config.site.name;
+            document.getElementById('footer-slogan').textContent = `"${cmsData.config.site.slogan}"`;
+            document.getElementById('footer-slogan-2').textContent = `"${cmsData.config.site.slogan}"`;
+            document.getElementById('footer-email').textContent = cmsData.config.site.email;
+            document.getElementById('email-link').href = `mailto:${cmsData.config.site.email}`;
+            document.getElementById('phone-link').href = `tel:${cmsData.config.site.phone}`;
+            document.getElementById('whatsapp-link').href = `https://wa.me/${cmsData.config.site.whatsapp}`;
+            document.getElementById('whatsapp-float').href = `https://wa.me/${cmsData.config.site.whatsapp}`;
+
+            // Hero
+            document.getElementById('hero-title-1').textContent = cmsData.config.hero.title_line1;
+            document.getElementById('hero-title-2').textContent = cmsData.config.hero.title_line2;
+            document.getElementById('hero-subtitle').textContent = cmsData.config.hero.subtitle;
+            document.getElementById('hero-cta-primary').innerHTML = `<i class="fas fa-rocket mr-2"></i>${cmsData.config.hero.cta_primary}`;
+            document.getElementById('hero-cta-secondary').innerHTML = `<i class="fas fa-eye mr-2"></i>${cmsData.config.hero.cta_secondary}`;
+            document.getElementById('nav-cta').textContent = cmsData.config.hero.cta_primary;
+
+            // Contacto
+            document.getElementById('contact-title').innerHTML = cmsData.config.contact.title.replace('EVOLUCIÓN', '<span class="text-ara-red">EVOLUCIÓN</span>');
+            document.getElementById('contact-subtitle').textContent = cmsData.config.contact.subtitle;
+            document.getElementById('contact-email-field').placeholder = cmsData.config.contact.email_placeholder;
+            document.getElementById('contact-message-field').placeholder = cmsData.config.contact.message_placeholder;
+            document.getElementById('contact-button').textContent = cmsData.config.contact.button_text;
+            document.getElementById('pulse-projects').textContent = cmsData.config.contact.pulse.projects;
+            document.getElementById('pulse-growth').textContent = cmsData.config.contact.pulse.growth;
+            document.getElementById('pulse-response').textContent = cmsData.config.contact.pulse.response;
+
+            // Sobre nosotros
+            document.getElementById('about-title').innerHTML = cmsData.config.about.title
+                .replace('páginas web', '<span class="text-ara-red">páginas web</span>')
+                .replace('máquinas de ventas', '<span class="text-ara-blue">máquinas de ventas</span>');
+            document.getElementById('about-description').textContent = cmsData.config.about.description;
+            document.getElementById('about-image').src = cmsData.config.about.image;
+            document.getElementById('stat-projects').setAttribute('data-target', cmsData.config.about.stats.projects);
+            document.getElementById('stat-years').setAttribute('data-target', cmsData.config.about.stats.years);
+            document.getElementById('stat-satisfaction').setAttribute('data-target', cmsData.config.about.stats.satisfaction);
+
+            // Renderizar características
+            const featuresContainer = document.getElementById('about-features');
+            featuresContainer.innerHTML = cmsData.config.about.features.map((feature, index) => `
+                <div class="flex items-start space-x-3">
+                    <div class="w-6 h-6 ${index % 2 === 0 ? 'bg-ara-red' : 'bg-ara-blue'} rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-ara-dark">${feature.title}</h4>
+                        <p class="text-sm text-gray-600">${feature.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            renderServices();
+            renderProjects();
+            renderProcess();
+            renderTestimonials();
+        }
+
+        function renderServices() {
+            const container = document.getElementById('services-grid');
+            container.innerHTML = cmsData.services.map((service, index) => `
+                <div class="service-card tilt-card ${service.dark ? 'glass-dark text-white' : 'glass text-gray-800 border border-gray-200'} rounded-2xl p-6 hover:shadow-2xl transition-all cursor-pointer group" data-tilt>
+                    <div class="w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas ${service.icon} text-2xl ${service.dark ? '' : 'text-white'}"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">${service.title}</h3>
+                    <p class="${service.dark ? 'text-white/70' : 'text-gray-600'} text-sm mb-4">${service.description}</p>
+                    <div class="service-details">
+                        <ul class="space-y-2 text-sm ${service.dark ? 'text-white/80' : 'text-gray-600'}">
+                            ${service.features.map(f => `
+                                <li class="flex items-center"><i class="fas fa-check ${service.dark ? 'text-ara-red' : 'text-ara-blue'} mr-2"></i>${f}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-grid');
+            container.innerHTML = cmsData.projects.map(project => {
+                if (project.is_ara_project) {
+                    return `
+                        <div class="portfolio-card rounded-2xl overflow-hidden shadow-lg group reveal relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-ara-blue to-ara-red z-10"></div>
+                            <div class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center">
+                                <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">PROYECTO PROPIO</span>
+                                <h3 class="text-white text-3xl font-black mb-2">${project.title}</h3>
+                                <p class="text-white/90 text-sm mb-6">${project.metric}</p>
+                                <button class="px-6 py-3 bg-white text-ara-dark font-bold rounded-full hover:bg-ara-gray transition-colors">Ver Demo</button>
+                            </div>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="portfolio-card rounded-2xl overflow-hidden shadow-lg group reveal">
+                        <div class="relative h-80">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                            <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-ara-red font-semibold text-sm">${project.category}</span>
+                                <h3 class="text-white text-2xl font-bold">${project.title}</h3>
+                                <p class="text-white/80 text-sm mt-2">${project.metric}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderProcess() {
+            const container = document.getElementById('process-list');
+            container.innerHTML = cmsData.process.map((step, index) => {
+                const isEven = index % 2 === 0;
+                return `
+                    <div class="process-step relative flex items-start mb-12 lg:mb-0 lg:h-48" data-index="${index}">
+                        ${isEven ? '<div class="hidden lg:block lg:w-1/2 lg:pr-12 lg:text-right"></div>' : `
+                        <div class="ml-24 lg:ml-0 lg:w-1/2 lg:pr-12 lg:text-right order-2 lg:order-1">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                                <span class="text-ara-blue font-bold">${step.step}</span>
+                                <h3 class="text-xl font-bold text-ara-dark mt-2">${step.title}</h3>
+                                <p class="text-gray-600 mt-2 text-sm">${step.description}</p>
+                            </div>
+                        </div>`}
+                        <div class="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center text-white font-bold text-xl z-10 shadow-lg">
+                            <i class="fas ${step.icon}"></i>
+                        </div>
+                        ${isEven ? `
+                        <div class="ml-24 lg:ml-0 lg:w-1/2 lg:pl-12">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                                <span class="text-ara-red font-bold">${step.step}</span>
+                                <h3 class="text-xl font-bold text-ara-dark mt-2">${step.title}</h3>
+                                <p class="text-gray-600 mt-2 text-sm">${step.description}</p>
+                            </div>
+                        </div>` : '<div class="hidden lg:block lg:w-1/2 lg:pl-12 order-1 lg:order-2"></div>'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonials-track');
+            const createTestimonialCard = (t) => `
+                <div class="w-96 flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <div class="flex items-center mb-4">
+                        <img src="${t.image}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="text-white font-bold">${t.name}</h4>
+                            <p class="text-white/60 text-sm">${t.position}, ${t.company}</p>
+                        </div>
+                    </div>
+                    <p class="text-white/90 text-lg italic">"${t.quote}"</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ${Array(t.rating).fill('<i class="fas fa-star"></i>').join('')}
+                    </div>
+                </div>
+            `;
+            
+            const cards = cmsData.testimonials.map(createTestimonialCard).join('');
+            // Duplicar para scroll infinito
+            container.innerHTML = cards + cards;
+        }
+
+        // Pantalla de Carga
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navegación Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.remove('nav-transparent');
+                navbar.classList.add('nav-solid');
+            } else {
+                navbar.classList.remove('nav-solid');
+                navbar.classList.add('nav-transparent');
+            }
+        });
+
+        // Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Efecto Máquina de Escribir
+        let typewriterWords = [];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            if (typewriterWords.length === 0) return;
+            const currentWord = typewriterWords[wordIndex];
+            const typewriter = document.getElementById('typewriter');
+            
+            if (isDeleting) {
+                typewriter.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriter.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % typewriterWords.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+
+        // Partículas
+        function createParticles(containerId, count) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles('particles', 50);
+        createParticles('contact-particles', 30);
+
+        // GSAP Animaciones
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.reveal-text', { y: 100, opacity: 0, duration: 1, stagger: 0.2, ease: 'power4.out' });
+
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            gsap.fromTo(el, { opacity: 0, y: 30 }, {
+                opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' }
+            });
+        });
+
+        // Escalonar Tarjetas de Servicio
+        ScrollTrigger.create({
+            trigger: '#servicios',
+            start: 'top 70%',
+            onEnter: () => {
+                gsap.from('.service-card', { opacity: 0, y: 50, duration: 0.6, stagger: 0.1, ease: 'power2.out' });
+            }
+        });
+
+        // Escalonar Tarjetas de Portafolio
+        ScrollTrigger.create({
+            trigger: '#portafolio',
+            start: 'top 70%',
+            onEnter: () => {
+                gsap.from('.portfolio-card', { opacity: 0, scale: 0.9, duration: 0.6, stagger: 0.1, ease: 'power2.out' });
+            }
+        });
+
+        // Pasos del Proceso
+        const processSteps = document.querySelectorAll('.process-step');
+        processSteps.forEach((step, index) => {
+            gsap.to(step, {
+                opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: step, start: 'top 80%',
+                    onEnter: () => {
+                        const progress = ((index + 1) / processSteps.length) * 100;
+                        document.getElementById('timeline-progress').style.height = progress + '%';
+                    }
+                }
+            });
+        });
+
+        // Animación de Contadores
+        const counters = document.querySelectorAll('.counter-value');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            ScrollTrigger.create({
+                trigger: counter, start: 'top 80%',
+                onEnter: () => {
+                    gsap.to(counter, { innerHTML: target, duration: 2, snap: { innerHTML: 1 }, ease: 'power2.out' });
+                }
+            });
+        });
+
+        // Efecto Inclinación 3D
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 1024) return;
+            document.querySelectorAll('[data-tilt]').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            document.querySelectorAll('[data-tilt]').forEach(card => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // Efecto Parallax
+        const parallaxElements = document.querySelectorAll('.parallax');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            parallaxElements.forEach(el => {
+                const speed = el.getAttribute('data-speed') || 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Envío de Formulario
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Te contactaremos pronto.');
+        });
+
+        // Inicializar
+        loadCMSData().then(() => {
+            typewriterWords = cmsData.config.hero.words;
+            setTimeout(type, 1000);
+        });
+    </script>
+</body>
+</html>

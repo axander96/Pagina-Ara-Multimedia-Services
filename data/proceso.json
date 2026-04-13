@@ -1,0 +1,44 @@
+{
+  "process": [
+    {
+      "id": 1,
+      "step": "PASO 1",
+      "title": "Descubrimiento",
+      "description": "Entendemos tu negocio mejor que tú. Análisis de competencia, buyer persona y objetivos claros.",
+      "icon": "fa-search",
+      "color": "from-ara-blue to-ara-red"
+    },
+    {
+      "id": 2,
+      "step": "PASO 2",
+      "title": "Estrategia",
+      "description": "Plan de ataque personalizado. Elegimos las herramientas y canales perfectos para tu industria.",
+      "icon": "fa-chess",
+      "color": "from-purple-500 to-pink-500"
+    },
+    {
+      "id": 3,
+      "step": "PASO 3",
+      "title": "Creación",
+      "description": "Diseño + Código = Magia. Desarrollamos con tecnología de punta y atención al detalle.",
+      "icon": "fa-paint-brush",
+      "color": "from-green-500 to-teal-500"
+    },
+    {
+      "id": 4,
+      "step": "PASO 4",
+      "title": "Lanzamiento",
+      "description": "Tu bebé digital nace. Deploy seguro, pruebas exhaustivas y puesta en marcha.",
+      "icon": "fa-rocket",
+      "color": "from-yellow-500 to-orange-500"
+    },
+    {
+      "id": 5,
+      "step": "PASO 5",
+      "title": "Crecimiento",
+      "description": "Optimización continua. Análisis de datos, mejoras constantes y escalabilidad.",
+      "icon": "fa-chart-line",
+      "color": "from-ara-red to-ara-blue"
+    }
+  ]
+}

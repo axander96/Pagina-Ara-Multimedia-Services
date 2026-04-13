@@ -1,0 +1,40 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Carlos Mendoza",
+      "position": "CEO",
+      "company": "TechStart",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      "quote": "Ventas aumentaron 80% en 3 meses. ARA transformó completamente nuestra presencia digital.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "María González",
+      "position": "Dueña",
+      "company": "Moda Local",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+      "quote": "La app que desarrollaron superó todas nuestras expectativas. Nuestros clientes la adoran.",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "name": "Roberto Silva",
+      "position": "Director",
+      "company": "Consultora ABC",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      "quote": "El equipo de ARA entiende perfectamente lo que necesitamos. Resultados medibles desde el primer mes.",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "name": "Ana López",
+      "position": "Marketing Manager",
+      "company": "Foodie Co",
+      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+      "quote": "Su estrategia de redes sociales duplicó nuestro engagement en semanas. Profesionales de verdad.",
+      "rating": 5
+    }
+  ]
+}

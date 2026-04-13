@@ -1,0 +1,58 @@
+{
+  "site": {
+    "name": "ARA Multimedia Services",
+    "slogan": "Tu evolución digital en movimiento",
+    "logo": "ARA",
+    "email": "info@aranultimedias.com",
+    "phone": "+1234567890",
+    "whatsapp": "1234567890"
+  },
+  "hero": {
+    "title_line1": "TRANSFORMA TU",
+    "title_line2": "PRESENCIA DIGITAL",
+    "subtitle": "Creamos experiencias digitales que convierten visitantes en clientes reales. Desde tu primera web hasta tu app empresarial.",
+    "cta_primary": "Quiero cotizar mi proyecto",
+    "cta_secondary": "Ver nuestros proyectos",
+    "words": ["Desarrollo Web", "Social Media", "SEO", "Apps Móviles"]
+  },
+  "about": {
+    "title": "No creamos solo páginas web, creamos máquinas de ventas digitales",
+    "description": "Nacimos de la necesidad de ver negocios locales crecer en el mundo digital. En ARA no somos solo proveedores, somos socios estratégicos en tu evolución digital.",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
+    "stats": {
+      "projects": 50,
+      "years": 5,
+      "satisfaction": 98
+    },
+    "features": [
+      {
+        "title": "Resultados Rápidos",
+        "description": "Entregas en semanas, no meses"
+      },
+      {
+        "title": "Enfoque en Conversiones",
+        "description": "Cada elemento diseñado para vender"
+      },
+      {
+        "title": "Calidad Comprobada",
+        "description": "Estándares internacionales"
+      },
+      {
+        "title": "Crecimiento Mensual",
+        "description": "Tu proyecto mejora cada mes"
+      }
+    ]
+  },
+  "contact": {
+    "title": "¿LISTO PARA TU EVOLUCIÓN DIGITAL?",
+    "subtitle": "Cuéntanos sobre tu proyecto y te enviaremos una propuesta gratuita en menos de 24 horas.",
+    "email_placeholder": "Tu correo electrónico",
+    "message_placeholder": "Cuéntanos sobre tu proyecto...",
+    "button_text": "Quiero mi propuesta",
+    "pulse": {
+      "projects": "3 proyectos",
+      "growth": "+500%",
+      "response": "< 2 horas"
+    }
+  }
+}

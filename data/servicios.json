@@ -1,0 +1,95 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "title": "Desarrollo Web",
+      "description": "Sitios que venden mientras duermes. Webs rápidas, seguras y diseñadas para convertir.",
+      "icon": "fa-code",
+      "gradient": "from-ara-blue to-ara-red",
+      "features": [
+        "100% Responsivo",
+        "Optimización velocidad",
+        "CMS fácil de gestionar"
+      ],
+      "dark": true
+    },
+    {
+      "id": 2,
+      "title": "Publicidad Digital",
+      "description": "Campañas en Meta Ads, Google Ads y TikTok que maximizan cada peso invertido.",
+      "icon": "fa-chart-line",
+      "gradient": "from-ara-red to-orange-500",
+      "features": [
+        "ROI medible",
+        "A/B testing continuo",
+        "Reportes en tiempo real"
+      ],
+      "dark": false
+    },
+    {
+      "id": 3,
+      "title": "Social Media",
+      "description": "No solo posteamos, construimos comunidades. Estrategia de contenido profesional.",
+      "icon": "fa-share-nodes",
+      "gradient": "from-purple-500 to-pink-500",
+      "features": [
+        "Engagement real",
+        "Calendario estratégico",
+        "Crisis management"
+      ],
+      "dark": false
+    },
+    {
+      "id": 4,
+      "title": "Apps Móviles",
+      "description": "Lleva tu negocio al bolsillo de tus clientes. Apps nativas iOS/Android o PWA.",
+      "icon": "fa-mobile-alt",
+      "gradient": "from-green-500 to-teal-500",
+      "features": [
+        "UX intuitiva",
+        "Notificaciones push",
+        "Integración con sistemas"
+      ],
+      "dark": false
+    },
+    {
+      "id": 5,
+      "title": "SEO",
+      "description": "Aparece en la primera página de Google cuando busquen lo que ofreces.",
+      "icon": "fa-search",
+      "gradient": "from-yellow-500 to-orange-500",
+      "features": [
+        "Palabras clave rentables",
+        "Link building natural",
+        "Auditoría mensual"
+      ],
+      "dark": false
+    },
+    {
+      "id": 6,
+      "title": "Correos Empresariales",
+      "description": "Profesionaliza tu comunicación con dominios propios (@tuempresa.com).",
+      "icon": "fa-envelope",
+      "gradient": "from-blue-400 to-blue-600",
+      "features": [
+        "Anti-spam garantizado",
+        "Soporte técnico",
+        "Escalabilidad"
+      ],
+      "dark": false
+    },
+    {
+      "id": 7,
+      "title": "Promociones Online",
+      "description": "Campañas promocionales, cupones digitales y sistemas de referidos.",
+      "icon": "fa-tag",
+      "gradient": "from-ara-red to-pink-600",
+      "features": [
+        "Viralización controlada",
+        "Métricas de conversión",
+        "Automatización"
+      ],
+      "dark": false
+    }
+  ]
+}

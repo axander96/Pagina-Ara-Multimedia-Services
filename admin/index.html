@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - ARA Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ara-blue': '#0066FF',
+                        'ara-red': '#FF4433',
+                        'ara-dark': '#003D99',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-active {
+            background: linear-gradient(135deg, #0066FF 0%, #FF4433 100%);
+            color: white;
+        }
+        .tab-inactive {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .tab-inactive:hover {
+            background: #e5e7eb;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-ara-blue to-ara-red text-white shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl font-black">ARA</span>
+                <span class="text-white/80 text-sm">Panel de Administración</span>
+            </div>
+            <a href="../frontend/index.html" target="_blank" class="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors text-sm">
+                <i class="fas fa-external-link-alt mr-2"></i>Ver Sitio Web
+            </a>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md min-h-screen">
+            <nav class="p-4 space-y-2">
+                <button onclick="showSection('config')" id="tab-config" class="tab-active w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-cog w-6"></i> Configuración General
+                </button>
+                <button onclick="showSection('hero')" id="tab-hero" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-home w-6"></i> Página Principal
+                </button>
+                <button onclick="showSection('services')" id="tab-services" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-briefcase w-6"></i> Servicios
+                </button>
+                <button onclick="showSection('projects')" id="tab-projects" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-images w-6"></i> Proyectos
+                </button>
+                <button onclick="showSection('process')" id="tab-process" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-stream w-6"></i> Proceso
+                </button>
+                <button onclick="showSection('about')" id="tab-about" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-users w-6"></i> Sobre Nosotros
+                </button>
+                <button onclick="showSection('testimonials')" id="tab-testimonials" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-comments w-6"></i> Testimonios
+                </button>
+                <button onclick="showSection('contact')" id="tab-contact" class="tab-inactive w-full text-left px-4 py-3 rounded-lg font-medium transition-all flex items-center">
+                    <i class="fas fa-envelope w-6"></i> Contacto
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            
+            <!-- Configuración General -->
+            <section id="section-config" class="space-y-6">
+                <h2 class="text-3xl font-bold text-gray-800">Configuración General</h2>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Información del Sitio</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Sitio</label>
+                            <input type="text" id="site-name" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Eslogan</label>
+                            <input type="text" id="site-slogan" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email de Contacto</label>
+                            <input type="email" id="site-email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                            <input type="text" id="site-phone" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp (solo números)</label>
+                            <input type="text" id="site-whatsapp" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveConfig()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Hero Section -->
+            <section id="section-hero" class="space-y-6 hidden">
+                <h2 class="text-3xl font-bold text-gray-800">Página Principal (Hero)</h2>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Contenido Principal</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título Línea 1</label>
+                            <input type="text" id="hero-title1" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título Línea 2</label>
+                            <input type="text" id="hero-title2" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subtítulo / Descripción</label>
+                            <textarea id="hero-subtitle" rows="3" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Texto Botón Principal</label>
+                            <input type="text" id="hero-cta1" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Texto Botón Secundario</label>
+                            <input type="text" id="hero-cta2" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Palabras Animadas (separadas por comas)</label>
+                            <input type="text" id="hero-words" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Ejemplo: Desarrollo Web, Social Media, SEO, Apps Móviles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveHero()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Servicios -->
+            <section id="section-services" class="space-y-6 hidden">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-3xl font-bold text-gray-800">Servicios</h2>
+                    <button onclick="addService()" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Agregar Servicio
+                    </button>
+                </div>
+                
+                <div id="services-list" class="space-y-4">
+                    <!-- Los servicios se cargarán aquí dinámicamente -->
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveServices()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Proyectos -->
+            <section id="section-projects" class="space-y-6 hidden">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-3xl font-bold text-gray-800">Proyectos</h2>
+                    <button onclick="addProject()" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Agregar Proyecto
+                    </button>
+                </div>
+                
+                <div id="projects-list" class="space-y-4">
+                    <!-- Los proyectos se cargarán aquí dinámicamente -->
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveProjects()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Proceso -->
+            <section id="section-process" class="space-y-6 hidden">
+                <h2 class="text-3xl font-bold text-gray-800">Proceso ARA</h2>
+                
+                <div id="process-list" class="space-y-4">
+                    <!-- Los pasos se cargarán aquí dinámicamente -->
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveProcess()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Sobre Nosotros -->
+            <section id="section-about" class="space-y-6 hidden">
+                <h2 class="text-3xl font-bold text-gray-800">Sobre Nosotros</h2>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Contenido</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <textarea id="about-title" rows="2" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                            <textarea id="about-description" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen</label>
+                            <input type="text" id="about-image" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Estadísticas</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Proyectos Completados</label>
+                            <input type="number" id="about-projects" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Años de Experiencia</label>
+                            <input type="number" id="about-years" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">% Satisfacción</label>
+                            <input type="number" id="about-satisfaction" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveAbout()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Testimonios -->
+            <section id="section-testimonials" class="space-y-6 hidden">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-3xl font-bold text-gray-800">Testimonios</h2>
+                    <button onclick="addTestimonial()" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Agregar Testimonio
+                    </button>
+                </div>
+                
+                <div id="testimonials-list" class="space-y-4">
+                    <!-- Los testimonios se cargarán aquí dinámicamente -->
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveTestimonials()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Contacto -->
+            <section id="section-contact" class="space-y-6 hidden">
+                <h2 class="text-3xl font-bold text-gray-800">Contacto</h2>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Contenido</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <input type="text" id="contact-title" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subtítulo</label>
+                            <textarea id="contact-subtitle" rows="2" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Placeholder Email</label>
+                            <input type="text" id="contact-email-placeholder" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Placeholder Mensaje</label>
+                            <input type="text" id="contact-message-placeholder" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Texto Botón</label>
+                            <input type="text" id="contact-button" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-ara-dark">Widget ARA Pulse</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Proyectos en Desarrollo</label>
+                            <input type="text" id="pulse-projects" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Crecimiento</label>
+                            <input type="text" id="pulse-growth" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tiempo de Respuesta</label>
+                            <input type="text" id="pulse-response" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="saveContact()" class="px-6 py-3 bg-gradient-to-r from-ara-blue to-ara-red text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-save mr-2"></i>Guardar Cambios
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal para mensajes -->
+    <div id="message-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 max-w-md mx-4">
+            <div id="message-content" class="text-center">
+                <!-- Contenido del mensaje -->
+            </div>
+            <button onclick="closeModal()" class="mt-4 w-full px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Datos en memoria
+        let configData = {};
+        let servicesData = [];
+        let projectsData = [];
+        let processData = [];
+        let testimonialsData = [];
+
+        // Iconos disponibles
+        const availableIcons = [
+            'fa-code', 'fa-chart-line', 'fa-share-nodes', 'fa-mobile-alt', 
+            'fa-search', 'fa-envelope', 'fa-tag', 'fa-rocket', 'fa-chess',
+            'fa-paint-brush', 'fa-users', 'fa-star', 'fa-heart', 'fa-lightbulb'
+        ];
+
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
+        });
+
+        function showSection(section) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            // Mostrar la seleccionada
+            document.getElementById(`section-${section}`).classList.remove('hidden');
+            
+            // Actualizar tabs
+            document.querySelectorAll('aside button').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('tab-inactive');
+            });
+            document.getElementById(`tab-${section}`).classList.remove('tab-inactive');
+            document.getElementById(`tab-${section}`).classList.add('tab-active');
+        }
+
+        async function loadAllData() {
+            try {
+                // Cargar config
+                const configRes = await fetch('../data/config.json');
+                configData = await configRes.json();
+                fillConfigForm();
+
+                // Cargar servicios
+                const servicesRes = await fetch('../data/servicios.json');
+                servicesData = (await servicesRes.json()).services;
+                renderServices();
+
+                // Cargar proyectos
+                const projectsRes = await fetch('../data/proyectos.json');
+                projectsData = (await projectsRes.json()).projects;
+                renderProjects();
+
+                // Cargar proceso
+                const processRes = await fetch('../data/proceso.json');
+                processData = (await processRes.json()).process;
+                renderProcess();
+
+                // Cargar testimonios
+                const testimonialsRes = await fetch('../data/testimonios.json');
+                testimonialsData = (await testimonialsRes.json()).testimonials;
+                renderTestimonials();
+
+            } catch (error) {
+                showMessage('Error cargando datos: ' + error.message, 'error');
+            }
+        }
+
+        function fillConfigForm() {
+            document.getElementById('site-name').value = configData.site.name;
+            document.getElementById('site-slogan').value = configData.site.slogan;
+            document.getElementById('site-email').value = configData.site.email;
+            document.getElementById('site-phone').value = configData.site.phone;
+            document.getElementById('site-whatsapp').value = configData.site.whatsapp;
+
+            document.getElementById('hero-title1').value = configData.hero.title_line1;
+            document.getElementById('hero-title2').value = configData.hero.title_line2;
+            document.getElementById('hero-subtitle').value = configData.hero.subtitle;
+            document.getElementById('hero-cta1').value = configData.hero.cta_primary;
+            document.getElementById('hero-cta2').value = configData.hero.cta_secondary;
+            document.getElementById('hero-words').value = configData.hero.words.join(', ');
+
+            document.getElementById('about-title').value = configData.about.title;
+            document.getElementById('about-description').value = configData.about.description;
+            document.getElementById('about-image').value = configData.about.image;
+            document.getElementById('about-projects').value = configData.about.stats.projects;
+            document.getElementById('about-years').value = configData.about.stats.years;
+            document.getElementById('about-satisfaction').value = configData.about.stats.satisfaction;
+
+            document.getElementById('contact-title').value = configData.contact.title;
+            document.getElementById('contact-subtitle').value = configData.contact.subtitle;
+            document.getElementById('contact-email-placeholder').value = configData.contact.email_placeholder;
+            document.getElementById('contact-message-placeholder').value = configData.contact.message_placeholder;
+            document.getElementById('contact-button').value = configData.contact.button_text;
+            document.getElementById('pulse-projects').value = configData.contact.pulse.projects;
+            document.getElementById('pulse-growth').value = configData.contact.pulse.growth;
+            document.getElementById('pulse-response').value = configData.contact.pulse.response;
+        }
+
+        function renderServices() {
+            const container = document.getElementById('services-list');
+            container.innerHTML = servicesData.map((service, index) => `
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all" data-index="${index}">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-lg font-bold text-ara-dark">Servicio #${index + 1}</h3>
+                        <button onclick="removeService(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <input type="text" class="service-title w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${service.title}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Icono</label>
+                            <select class="service-icon w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue">
+                                ${availableIcons.map(icon => `<option value="${icon}" ${service.icon === icon ? 'selected' : ''}>${icon}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                            <textarea class="service-desc w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" rows="2">${service.description}</textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Características (una por línea)</label>
+                            <textarea class="service-features w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" rows="3">${service.features.join('\n')}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-list');
+            container.innerHTML = projectsData.map((project, index) => `
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all" data-index="${index}">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-lg font-bold text-ara-dark">${project.is_ara_project ? 'Proyecto ARA (Especial)' : `Proyecto #${index + 1}`}</h3>
+                        ${!project.is_ara_project ? `
+                        <button onclick="removeProject(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        ` : ''}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <input type="text" class="project-title w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${project.title}" ${project.is_ara_project ? 'disabled' : ''}>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                            <input type="text" class="project-category w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${project.category}" ${project.is_ara_project ? 'disabled' : ''}>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen</label>
+                            <input type="text" class="project-image w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${project.image}" ${project.is_ara_project ? 'disabled' : ''}>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Métrica / Resultado</label>
+                            <input type="text" class="project-metric w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${project.metric}">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProcess() {
+            const container = document.getElementById('process-list');
+            container.innerHTML = processData.map((step, index) => `
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all">
+                    <h3 class="text-lg font-bold text-ara-dark mb-4">${step.step}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <input type="text" class="process-title w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${step.title}" data-index="${index}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Icono (clase FontAwesome)</label>
+                            <input type="text" class="process-icon w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${step.icon}" data-index="${index}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                            <textarea class="process-desc w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" rows="2" data-index="${index}">${step.description}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonials-list');
+            container.innerHTML = testimonialsData.map((testimonial, index) => `
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all" data-index="${index}">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-lg font-bold text-ara-dark">Testimonio #${index + 1}</h3>
+                        <button onclick="removeTestimonial(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                            <input type="text" class="testimonial-name w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${testimonial.name}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+                            <input type="text" class="testimonial-position w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${testimonial.position}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+                            <input type="text" class="testimonial-company w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${testimonial.company}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Estrellas (1-5)</label>
+                            <input type="number" min="1" max="5" class="testimonial-rating w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${testimonial.rating}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Foto</label>
+                            <input type="text" class="testimonial-image w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" value="${testimonial.image}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Testimonio</label>
+                            <textarea class="testimonial-quote w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ara-blue" rows="3">${testimonial.quote}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Funciones para agregar elementos
+        function addService() {
+            servicesData.push({
+                id: Date.now(),
+                title: "Nuevo Servicio",
+                description: "Descripción del servicio",
+                icon: "fa-star",
+                gradient: "from-ara-blue to-ara-red",
+                features: ["Característica 1", "Característica 2", "Característica 3"],
+                dark: false
+            });
+            renderServices();
+        }
+
+        function addProject() {
+            projectsData.push({
+                id: Date.now(),
+                title: "Nuevo Proyecto",
+                category: "Categoría",
+                image: "https://via.placeholder.com/600x400",
+                metric: "Métrica destacada",
+                featured: false,
+                is_ara_project: false
+            });
+            renderProjects();
+        }
+
+        function addTestimonial() {
+            testimonialsData.push({
+                id: Date.now(),
+                name: "Nombre Cliente",
+                position: "Cargo",
+                company: "Empresa",
+                image: "https://via.placeholder.com/100x100",
+                quote: "Testimonio del cliente...",
+                rating: 5
+            });
+            renderTestimonials();
+        }
+
+        // Funciones para eliminar
+        function removeService(index) {
+            if (confirm('¿Eliminar este servicio?')) {
+                servicesData.splice(index, 1);
+                renderServices();
+            }
+        }
+
+        function removeProject(index) {
+            if (confirm('¿Eliminar este proyecto?')) {
+                projectsData.splice(index, 1);
+                renderProjects();
+            }
+        }
+
+        function removeTestimonial(index) {
+            if (confirm('¿Eliminar este testimonio?')) {
+                testimonialsData.splice(index, 1);
+                renderTestimonials();
+            }
+        }
+
+        // Funciones de guardado
+        function saveConfig() {
+            configData.site.name = document.getElementById('site-name').value;
+            configData.site.slogan = document.getElementById('site-slogan').value;
+            configData.site.email = document.getElementById('site-email').value;
+            configData.site.phone = document.getElementById('site-phone').value;
+            configData.site.whatsapp = document.getElementById('site-whatsapp').value;
+
+            configData.hero.title_line1 = document.getElementById('hero-title1').value;
+            configData.hero.title_line2 = document.getElementById('hero-title2').value;
+            configData.hero.subtitle = document.getElementById('hero-subtitle').value;
+            configData.hero.cta_primary = document.getElementById('hero-cta1').value;
+            configData.hero.cta_secondary = document.getElementById('hero-cta2').value;
+            configData.hero.words = document.getElementById('hero-words').value.split(',').map(w => w.trim());
+
+            configData.about.title = document.getElementById('about-title').value;
+            configData.about.description = document.getElementById('about-description').value;
+            configData.about.image = document.getElementById('about-image').value;
+            configData.about.stats.projects = parseInt(document.getElementById('about-projects').value);
+            configData.about.stats.years = parseInt(document.getElementById('about-years').value);
+            configData.about.stats.satisfaction = parseInt(document.getElementById('about-satisfaction').value);
+
+            configData.contact.title = document.getElementById('contact-title').value;
+            configData.contact.subtitle = document.getElementById('contact-subtitle').value;
+            configData.contact.email_placeholder = document.getElementById('contact-email-placeholder').value;
+            configData.contact.message_placeholder = document.getElementById('contact-message-placeholder').value;
+            configData.contact.button_text = document.getElementById('contact-button').value;
+            configData.contact.pulse.projects = document.getElementById('pulse-projects').value;
+            configData.contact.pulse.growth = document.getElementById('pulse-growth').value;
+            configData.contact.pulse.response = document.getElementById('pulse-response').value;
+
+            downloadJSON(configData, 'config.json');
+            showMessage('Configuración guardada correctamente. Descarga el archivo y reemplázalo en la carpeta /data', 'success');
+        }
+
+        function saveServices() {
+            const cards = document.querySelectorAll('#services-list > div');
+            servicesData = Array.from(cards).map((card, index) => ({
+                id: servicesData[index]?.id || Date.now(),
+                title: card.querySelector('.service-title').value,
+                description: card.querySelector('.service-desc').value,
+                icon: card.querySelector('.service-icon').value,
+                gradient: servicesData[index]?.gradient || "from-ara-blue to-ara-red",
+                features: card.querySelector('.service-features').value.split('\n').filter(f => f.trim()),
+                dark: index === 0
+            }));
+
+            downloadJSON({ services: servicesData }, 'servicios.json');
+            showMessage('Servicios guardados correctamente. Descarga el archivo y reemplázalo en la carpeta /data', 'success');
+        }
+
+        function saveProjects() {
+            const cards = document.querySelectorAll('#projects-list > div');
+            projectsData = Array.from(cards).map((card, index) => ({
+                id: projectsData[index]?.id || Date.now(),
+                title: card.querySelector('.project-title').value,
+                category: card.querySelector('.project-category').value,
+                image: card.querySelector('.project-image').value,
+                metric: card.querySelector('.project-metric').value,
+                featured: projectsData[index]?.featured || false,
+                is_ara_project: projectsData[index]?.is_ara_project || false
+            }));
+
+            downloadJSON({ projects: projectsData }, 'proyectos.json');
+            showMessage('Proyectos guardados correctamente. Descarga el archivo y reemplázalo en la carpeta /data', 'success');
+        }
+
+        function saveProcess() {
+            const cards = document.querySelectorAll('#process-list > div');
+            processData = Array.from(cards).map((card, index) => ({
+                id: index + 1,
+                step: `PASO ${index + 1}`,
+                title: card.querySelector('.process-title').value,
+                description: card.querySelector('.process-desc').value,
+                icon: card.querySelector('.process-icon').value,
+                color: processData[index]?.color || "from-ara-blue to-ara-red"
+            }));
+
+            downloadJSON({ process: processData }, 'proceso.json');
+            showMessage('Proceso guardado correctamente. Descarga el archivo y reemplázalo en la carpeta /data', 'success');
+        }
+
+        function saveAbout() {
+            saveConfig();
+        }
+
+        function saveTestimonials() {
+            const cards = document.querySelectorAll('#testimonials-list > div');
+            testimonialsData = Array.from(cards).map((card, index) => ({
+                id: testimonialsData[index]?.id || Date.now(),
+                name: card.querySelector('.testimonial-name').value,
+                position: card.querySelector('.testimonial-position').value,
+                company: card.querySelector('.testimonial-company').value,
+                image: card.querySelector('.testimonial-image').value,
+                quote: card.querySelector('.testimonial-quote').value,
+                rating: parseInt(card.querySelector('.testimonial-rating').value)
+            }));
+
+            downloadJSON({ testimonials: testimonialsData }, 'testimonios.json');
+            showMessage('Testimonios guardados correctamente. Descarga el archivo y reemplázalo en la carpeta /data', 'success');
+        }
+
+        function saveContact() {
+            saveConfig();
+        }
+
+        function saveHero() {
+            saveConfig();
+        }
+
+        function downloadJSON(data, filename) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function showMessage(message, type) {
+            const modal = document.getElementById('message-modal');
+            const content = document.getElementById('message-content');
+            
+            const icon = type === 'success' ? '<i class="fas fa-check-circle text-green-500 text-4xl mb-4"></i>' : '<i class="fas fa-exclamation-circle text-red-500 text-4xl mb-4"></i>';
+            content.innerHTML = `${icon}<p class="text-gray-800">${message}</p>`;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
