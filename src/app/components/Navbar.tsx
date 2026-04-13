@@ -44,7 +44,7 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-20">
-            <a href="#" className="flex items-center space-x-2">
+            <a href="#hero" className="flex items-center space-x-2">
               {siteConfig?.logoImage ? (
                 <img 
                   src={urlFor(siteConfig.logoImage)} 
