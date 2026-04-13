@@ -8,6 +8,11 @@ interface FooterProps {
     logoImage?: any
     slogan: string
     email: string
+    socialLinks?: {
+      facebook?: string
+      instagram?: string
+      linkedin?: string
+    }
   }
 }
 
@@ -38,13 +43,28 @@ export default function Footer({ siteConfig }: FooterProps) {
           </p>
           
           <div className="flex items-center space-x-4">
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#0066FF] transition-colors">
+            <a 
+              href={siteConfig?.socialLinks?.facebook || '#'} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#0066FF] transition-colors"
+            >
               <i className="fa-brands fa-facebook-f"></i>
             </a>
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#FF4433] transition-colors">
+            <a 
+              href={siteConfig?.socialLinks?.instagram || '#'} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#FF4433] transition-colors"
+            >
               <i className="fa-brands fa-instagram"></i>
             </a>
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors">
+            <a 
+              href={siteConfig?.socialLinks?.linkedin || '#'} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-colors"
+            >
               <i className="fa-brands fa-linkedin-in"></i>
             </a>
           </div>
