@@ -1,8 +1,7 @@
 export const siteConfigQuery = `*[_type == "siteConfig"][0] {
   siteName,
   slogan,
-  logoText,
-  logoImage,
+  logoImage{asset->{url}},
   email,
   phone,
   whatsapp,

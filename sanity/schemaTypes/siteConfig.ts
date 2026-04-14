@@ -16,17 +16,10 @@ export default {
       initialValue: 'Tu evolución digital en movimiento',
     },
     {
-      name: 'logoText',
-      title: 'Logo (texto)',
-      type: 'string',
-      initialValue: 'ARA',
-      description: 'Texto que aparece como logo cuando no hay imagen',
-    },
-    {
       name: 'logoImage',
-      title: 'Logo (imagen)',
+      title: 'Logo',
       type: 'image',
-      description: 'Imagen del logo (opcional). Si se sube, reemplazará el texto',
+      description: 'Logo de la empresa',
       options: {
         hotspot: true,
       },

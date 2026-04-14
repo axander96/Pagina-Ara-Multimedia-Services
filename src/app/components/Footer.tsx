@@ -4,7 +4,6 @@ import { urlFor } from '@/lib/sanity'
 
 interface FooterProps {
   siteConfig: {
-    logoText?: string
     logoImage?: any
     slogan: string
     email: string
@@ -46,10 +45,7 @@ export default function Footer({ siteConfig }: FooterProps) {
                 className="h-10 w-auto object-contain"
               />
             ) : (
-              <>
-                <span className="text-3xl font-black text-white">{siteConfig?.logoText || 'ARA'}</span>
-                <span className="text-xs text-white/60">MULTIMEDIA<br/>SERVICES</span>
-              </>
+              <span className="text-3xl font-black text-white">ARA</span>
             )}
           </div>
           
@@ -96,7 +92,7 @@ export default function Footer({ siteConfig }: FooterProps) {
         
         <div className="mt-8 pt-8 border-t border-white/10 text-center">
           <p className="text-white/40 text-sm">
-            © {currentYear} {siteConfig?.logoText || 'ARA'} Multimedia Services. Todos los derechos reservados.
+            © {currentYear} ARA Multimedia Services. Todos los derechos reservados.
           </p>
         </div>
       </div>

@@ -6,7 +6,6 @@ import { urlFor } from '@/lib/sanity'
 
 interface NavbarProps {
   siteConfig: {
-    logoText?: string
     logoImage?: any
     slogan?: string
   }
@@ -52,12 +51,7 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
                   className="h-10 w-auto object-contain"
                 />
               ) : (
-                <>
-                  <span className="text-3xl font-black text-white">{siteConfig?.logoText || 'ARA'}</span>
-                  <span className="text-xs text-white/80 hidden sm:block">
-                    MULTIMEDIA<br/>SERVICES
-                  </span>
-                </>
+                <span className="text-3xl font-black text-white">ARA</span>
               )}
             </a>
             
