@@ -1,17 +1,8 @@
 export const siteConfigQuery = `*[_type == "siteConfig"][0] {
-  siteName,
-  slogan,
+  ...,
   logoImage {
-    asset-> {
-      _id,
-      url,
-      _ref
-    }
-  },
-  email,
-  phone,
-  whatsapp,
-  socialLinks
+    asset->
+  }
 }`
 
 export const heroQuery = `*[_type == "hero"][0]`
