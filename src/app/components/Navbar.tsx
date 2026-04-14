@@ -6,7 +6,7 @@ import { urlFor } from '@/lib/sanity'
 
 interface NavbarProps {
   siteConfig: {
-    logoImage?: any
+    logo?: any
     slogan?: string
   }
   heroCta?: string
@@ -18,8 +18,8 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   
   // Debug logo
   console.log('=== LOGO DEBUG ===')
-  console.log('logoImage:', siteConfig?.logoImage)
-  console.log('logo URL:', urlFor(siteConfig?.logoImage))
+  console.log('logo:', siteConfig?.logo)
+  console.log('logo URL:', urlFor(siteConfig?.logo))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,9 +49,9 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-20">
             <a href="#hero" className="flex items-center space-x-2">
-              {siteConfig?.logoImage ? (
+              {siteConfig?.logo ? (
                 <img 
-                  src={urlFor(siteConfig.logoImage)} 
+                  src={urlFor(siteConfig.logo)} 
                   alt="ARA Multimedia Services"
                   className="h-10 w-auto object-contain"
                 />
