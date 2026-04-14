@@ -15,11 +15,6 @@ interface NavbarProps {
 export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-  // Debug: mostrar datos del logo
-  console.log('Navbar siteConfig:', siteConfig)
-  console.log('logoImage:', siteConfig?.logoImage)
-  console.log('logo URL:', urlFor(siteConfig?.logoImage))
 
   useEffect(() => {
     const handleScroll = () => {

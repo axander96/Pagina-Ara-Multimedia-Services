@@ -14,6 +14,11 @@ export const urlFor = (source: any) => {
   // Si es un string (URL completa), devolverla
   if (typeof source === 'string') return source
   
+  // Si tiene asset.url (viene de la query con asset->)
+  if (source.asset?.url) {
+    return source.asset.url
+  }
+  
   // Si tiene asset._ref (formato estándar de Sanity)
   if (source.asset?._ref) {
     const ref = source.asset._ref
@@ -24,11 +29,6 @@ export const urlFor = (source: any) => {
     const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'ddona00k'
     const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
     return `https://cdn.sanity.io/images/${projectId}/${dataset}/${filename}`
-  }
-  
-  // Si tiene asset.url (ya es una URL completa)
-  if (source.asset?.url) {
-    return source.asset.url
   }
   
   return ''
