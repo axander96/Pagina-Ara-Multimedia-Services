@@ -16,10 +16,10 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
-  // Debug logo
-  console.log('=== LOGO DEBUG ===')
-  console.log('logoImage:', siteConfig?.logoImage)
-  console.log('logo URL:', urlFor(siteConfig?.logoImage))
+  // Debug - ver todo siteConfig
+  console.log('=== FULL SITECONFIG ===', JSON.stringify(siteConfig, null, 2))
+  console.log('logoImage value:', siteConfig?.logoImage)
+  console.log('logoImage exists:', !!siteConfig?.logoImage)
 
   useEffect(() => {
     const handleScroll = () => {
