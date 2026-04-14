@@ -27,9 +27,22 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
   const [formData, setFormData] = useState({ email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [showPulse, setShowPulse] = useState(true)
 
   useEffect(() => {
     setMounted(true)
+    
+    // Ocultar ARA Pulse cuando se llega al footer
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight
+      const documentHeight = document.documentElement.scrollHeight
+      // Ocultar cuando estamos a menos de 100px del final de la página
+      const isNearFooter = documentHeight - scrollPosition < 150
+      setShowPulse(!isNearFooter)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -144,7 +157,7 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
         </div>
         
         {/* ARA Pulse Widget */}
-        <div className="fixed bottom-6 right-6 z-40 hidden lg:block">
+        <div className={`fixed bottom-6 right-6 z-40 hidden lg:block transition-opacity duration-500 ${showPulse ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="animate-pulse bg-white rounded-2xl shadow-2xl p-4 max-w-xs">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
