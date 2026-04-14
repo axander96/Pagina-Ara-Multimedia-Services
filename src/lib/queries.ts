@@ -1,6 +1,6 @@
 export const siteConfigQuery = `*[_type == "siteConfig"][0] {
   ...,
-  logo {
+  logoImage {
     asset->
   }
 }`
