@@ -4,7 +4,7 @@ import { urlFor } from '@/lib/sanity'
 
 interface FooterProps {
   siteConfig: {
-    logoImage?: any
+    logo?: any
     slogan: string
     email: string
     whatsapp?: string
@@ -38,9 +38,9 @@ export default function Footer({ siteConfig }: FooterProps) {
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center space-x-2">
-            {siteConfig?.logoImage ? (
+            {siteConfig?.logo ? (
               <img 
-                src={urlFor(siteConfig.logoImage)} 
+                src={urlFor(siteConfig.logo)} 
                 alt="ARA Multimedia Services"
                 className="h-10 w-auto object-contain"
               />

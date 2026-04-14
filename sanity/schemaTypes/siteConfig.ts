@@ -16,7 +16,7 @@ export default {
       initialValue: 'Tu evolución digital en movimiento',
     },
     {
-      name: 'logoImage',
+      name: 'logo',
       title: 'Logo',
       type: 'image',
       description: 'Logo de la empresa',
