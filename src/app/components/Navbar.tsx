@@ -18,12 +18,15 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
   // Verificar cualquier campo de logo disponible
-  const logoUrl = urlFor(siteConfig?.logo) || urlFor(siteConfig?.logoImage)
+  let logoUrl = urlFor(siteConfig?.logo) || urlFor(siteConfig?.logoImage)
+  
+  // Fallback temporal con URL directa si Sanity no funciona
+  if (!logoUrl) {
+    logoUrl = 'https://cdn.sanity.io/images/ddona00k/production/06fc5021a828e6fb57e1595c1513ce0b4169f14b-899x202.png'
+  }
   
   console.log('=== DEBUG NAVBAR ===')
-  console.log('logo (opción 1):', siteConfig?.logo)
-  console.log('logoImage (opción 2):', siteConfig?.logoImage)
-  console.log('logoUrl usada:', logoUrl)
+  console.log('logoUrl final:', logoUrl)
 
   useEffect(() => {
     const handleScroll = () => {
