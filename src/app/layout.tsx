@@ -7,6 +7,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'ARA Multimedia Services | Tu evolución digital en movimiento',
   description: 'Agencia digital especializada en desarrollo web, publicidad digital, social media, apps móviles y SEO. Transformamos tu presencia digital.',
+  icons: {
+    icon: '/logo-ara.png',
+    shortcut: '/logo-ara.png',
+    apple: '/logo-ara.png',
+  },
 }
 
 export default function RootLayout({
