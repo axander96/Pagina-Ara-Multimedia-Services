@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: 'ARA Multimedia Services | Tu evolución digital en movimiento',
   description: 'Agencia digital especializada en desarrollo web, publicidad digital, social media, apps móviles y SEO. Transformamos tu presencia digital.',
   icons: {
-    icon: '/logo-ara.png',
-    shortcut: '/logo-ara.png',
-    apple: '/logo-ara.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon-32x32.png',
   },
 }
 
