@@ -1,4 +1,9 @@
-export const siteConfigQuery = `*[_type == "siteConfig"][0]`
+export const siteConfigQuery = `*[_type == "siteConfig"][0] {
+  ...,
+  logoImage {
+    asset->
+  }
+}`
 
 export const heroQuery = `*[_type == "hero"][0]`
 
