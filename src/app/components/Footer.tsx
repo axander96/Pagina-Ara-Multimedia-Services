@@ -4,6 +4,7 @@ import { urlFor } from '@/lib/sanity'
 
 interface FooterProps {
   siteConfig: {
+    logo?: any
     logoImage?: any
     slogan: string
     email: string
@@ -26,6 +27,15 @@ const DEFAULT_SOCIAL_URLS = {
 export default function Footer({ siteConfig }: FooterProps) {
   const currentYear = new Date().getFullYear()
   
+  // Verificar cualquier campo de logo disponible
+  const logoData = siteConfig?.logoImage || siteConfig?.logo
+  const logoUrl = urlFor(logoData)
+  
+  console.log('=== FOOTER LOGO DEBUG ===')
+  console.log('logoImage:', siteConfig?.logoImage)
+  console.log('logo:', siteConfig?.logo)
+  console.log('logoUrl generada:', logoUrl)
+  
   // Usar URLs de Sanity o las por defecto
   const socialLinks = {
     instagram: siteConfig?.socialLinks?.instagram || DEFAULT_SOCIAL_URLS.instagram,
@@ -38,9 +48,9 @@ export default function Footer({ siteConfig }: FooterProps) {
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center space-x-2">
-            {siteConfig?.logoImage ? (
+            {logoUrl ? (
               <img 
-                src={urlFor(siteConfig.logoImage)} 
+                src={logoUrl}
                 alt="ARA Multimedia Services"
                 className="h-10 w-auto object-contain"
               />
