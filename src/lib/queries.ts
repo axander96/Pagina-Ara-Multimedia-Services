@@ -1,10 +1,26 @@
 export const siteConfigQuery = `*[_type == "siteConfig"][0] {
-  ...,
+  _id,
+  siteName,
+  slogan,
+  email,
+  phone,
+  whatsapp,
+  socialLinks,
   logo {
-    asset->
+    _type,
+    asset-> {
+      _id,
+      _ref,
+      url
+    }
   },
   logoImage {
-    asset->
+    _type,
+    asset-> {
+      _id,
+      _ref,
+      url
+    }
   }
 }`
 

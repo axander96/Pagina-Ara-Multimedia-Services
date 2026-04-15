@@ -7,17 +7,9 @@ export const client = createClient({
   useCdn: true,
 })
 
-// URL builder manual para imágenes de Sanity
+// URL builder para imágenes de Sanity
 export const urlFor = (source: any) => {
   if (!source) return ''
-  
-  // Si es un string, verificar que sea una URL válida
-  if (typeof source === 'string') {
-    // Solo devolver si es una URL completa (empieza con http)
-    if (source.startsWith('http')) return source
-    // Si no, no es una imagen válida
-    return ''
-  }
   
   // Si tiene asset.url (viene de la query con asset->)
   if (source.asset?.url) {
