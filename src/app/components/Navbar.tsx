@@ -21,9 +21,8 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const logoUrl = urlFor(siteConfig?.logo)
   
   console.log('=== DEBUG NAVBAR ===')
-  console.log('siteConfig:', siteConfig)
-  console.log('siteConfig.logo:', siteConfig?.logo)
-  console.log('logoUrl:', logoUrl)
+  console.log('siteConfig keys:', Object.keys(siteConfig || {}))
+  console.log('siteConfig:', JSON.stringify(siteConfig, null, 2))
 
   useEffect(() => {
     const handleScroll = () => {
