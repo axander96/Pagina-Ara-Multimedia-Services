@@ -18,9 +18,7 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
   // Verificar cualquier campo de logo disponible
-  // Intentar logo primero (donde parece estar la imagen), luego logoImage
-  const logoData = siteConfig?.logo || siteConfig?.logoImage
-  const logoUrl = urlFor(logoData)
+  const logoUrl = urlFor(siteConfig?.logo)
 
   useEffect(() => {
     const handleScroll = () => {
