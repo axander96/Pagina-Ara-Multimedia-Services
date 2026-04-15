@@ -19,6 +19,11 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   
   // Verificar cualquier campo de logo disponible
   const logoUrl = urlFor(siteConfig?.logo)
+  
+  console.log('=== DEBUG NAVBAR ===')
+  console.log('siteConfig:', siteConfig)
+  console.log('siteConfig.logo:', siteConfig?.logo)
+  console.log('logoUrl:', logoUrl)
 
   useEffect(() => {
     const handleScroll = () => {
