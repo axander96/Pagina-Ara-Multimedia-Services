@@ -18,11 +18,12 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
   // Verificar cualquier campo de logo disponible
-  const logoUrl = urlFor(siteConfig?.logo)
+  const logoUrl = urlFor(siteConfig?.logo) || urlFor(siteConfig?.logoImage)
   
   console.log('=== DEBUG NAVBAR ===')
-  console.log('siteConfig keys:', Object.keys(siteConfig || {}))
-  console.log('siteConfig:', JSON.stringify(siteConfig, null, 2))
+  console.log('logo (opción 1):', siteConfig?.logo)
+  console.log('logoImage (opción 2):', siteConfig?.logoImage)
+  console.log('logoUrl usada:', logoUrl)
 
   useEffect(() => {
     const handleScroll = () => {

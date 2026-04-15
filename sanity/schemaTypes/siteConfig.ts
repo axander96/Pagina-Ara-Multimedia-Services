@@ -17,9 +17,18 @@ export default {
     },
     {
       name: 'logo',
-      title: 'Logo',
+      title: 'Logo (Opción 1)',
       type: 'image',
-      description: 'Logo de la empresa',
+      description: 'Primera opción para el logo de la empresa',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'logoImage',
+      title: 'Logo (Opción 2)',
+      type: 'image',
+      description: 'Segunda opción para el logo de la empresa',
       options: {
         hotspot: true,
       },

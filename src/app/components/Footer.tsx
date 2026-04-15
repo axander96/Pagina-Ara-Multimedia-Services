@@ -28,7 +28,7 @@ export default function Footer({ siteConfig }: FooterProps) {
   const currentYear = new Date().getFullYear()
   
   // Verificar cualquier campo de logo disponible
-  const logoUrl = urlFor(siteConfig?.logo)
+  const logoUrl = urlFor(siteConfig?.logo) || urlFor(siteConfig?.logoImage)
   
   // Usar URLs de Sanity o las por defecto
   const socialLinks = {
