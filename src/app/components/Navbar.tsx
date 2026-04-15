@@ -20,13 +20,6 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
   // Verificar cualquier campo de logo disponible
   const logoData = siteConfig?.logoImage || siteConfig?.logo
   const logoUrl = urlFor(logoData)
-  
-  console.log('=== NAVBAR LOGO DEBUG ===')
-  console.log('siteConfig:', siteConfig)
-  console.log('logoImage:', siteConfig?.logoImage)
-  console.log('logo:', siteConfig?.logo)
-  console.log('logoData usado:', logoData)
-  console.log('logoUrl generada:', logoUrl)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,14 +49,12 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-20">
             <a href="#hero" className="flex items-center space-x-2">
-              {logoUrl ? (
+              {logoUrl && (
                 <img 
                   src={logoUrl}
                   alt="ARA Multimedia Services"
                   className="h-10 w-auto object-contain"
                 />
-              ) : (
-                <span className="text-3xl font-black text-white">ARA</span>
               )}
             </a>
             
