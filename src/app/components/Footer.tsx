@@ -17,11 +17,11 @@ interface FooterProps {
   }
 }
 
-// URLs por defecto de las redes sociales
-const DEFAULT_SOCIAL_URLS = {
-  instagram: 'https://www.instagram.com/aramultimediaservices?igsh=MTdiN3k1eTA2N3g2MA==',
-  linkedin: 'https://www.linkedin.com/in/alexander-rodriguez-a-1621a5353?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-  youtube: 'https://youtube.com/@aramultimediaservices?si=WXMm7oxnBwke-hHe',
+// URLs oficiales de las redes sociales
+const SOCIAL_URLS = {
+  instagram: 'https://www.instagram.com/aramultimediaservices',
+  linkedin: 'https://www.linkedin.com/in/alexander-rodriguez-a-1621a5353',
+  youtube: 'https://youtube.com/@aramultimediaservices',
 }
 
 export default function Footer({ siteConfig }: FooterProps) {
@@ -35,12 +35,8 @@ export default function Footer({ siteConfig }: FooterProps) {
     logoUrl = 'https://cdn.sanity.io/images/ddona00k/production/06fc5021a828e6fb57e1595c1513ce0b4169f14b-899x202.png'
   }
   
-  // Usar URLs de Sanity o las por defecto
-  const socialLinks = {
-    instagram: siteConfig?.socialLinks?.instagram || DEFAULT_SOCIAL_URLS.instagram,
-    linkedin: siteConfig?.socialLinks?.linkedin || DEFAULT_SOCIAL_URLS.linkedin,
-    youtube: siteConfig?.socialLinks?.youtube || DEFAULT_SOCIAL_URLS.youtube,
-  }
+  // Usar URLs hardcodeadas (Sanity tiene problemas con los socialLinks)
+  const socialLinks = SOCIAL_URLS
 
   return (
     <footer className="bg-[#003D99] border-t border-white/10 py-12">
