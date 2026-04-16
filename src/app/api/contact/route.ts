@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resendApiKey = process.env.RESEND_API_KEY
+const resend = resendApiKey ? new Resend(resendApiKey) : null
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +21,14 @@ export async function POST(request: Request) {
       return Response.json(
         { error: 'Email no válido' },
         { status: 400 }
+      )
+    }
+
+    // Verificar que Resend esté configurado
+    if (!resend) {
+      return Response.json(
+        { error: 'Servicio de email no configurado' },
+        { status: 500 }
       )
     }
 
