@@ -1,7 +1,7 @@
 // Configuración estática del sitio - No requiere Sanity
 export const SITE_CONFIG = {
   name: 'ARA Multimedia Services',
-  slogan: 'Marketing Digital con Impacto Real',
+  slogan: 'Soluciones Digitales con Impacto Real',
   email: 'Info@aramultimedias.com',
   phone: '+1 849 565-0087',
   whatsapp: '+1 849 565-0087',

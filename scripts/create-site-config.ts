@@ -11,7 +11,7 @@ const client = createClient({
 const siteConfig = {
   _type: 'siteConfig',
   siteName: 'ARA Multimedia Services',
-  slogan: 'Marketing Digital con Impacto Real',
+  slogan: 'Soluciones Digitales con Impacto Real',
   logo: {
     _type: 'image',
     asset: {
