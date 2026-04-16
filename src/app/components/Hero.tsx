@@ -2,24 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { HERO_CONFIG, SITE_CONFIG } from '@/lib/config'
 
-interface HeroProps {
-  hero: {
-    titleLine1: string
-    titleLine2: string
-    subtitle: string
-    ctaPrimary: string
-    ctaSecondary: string
-    animatedWords: string[]
-  }
-  siteConfig: {
-    slogan: string
-  }
-}
-
-export default function Hero({ hero, siteConfig }: HeroProps) {
-  // Debug: mostrar datos recibidos
-  console.log('Hero data:', hero)
+export default function Hero() {
+  const hero = HERO_CONFIG
   
   const [currentWord, setCurrentWord] = useState(0)
   const [displayText, setDisplayText] = useState('')
@@ -131,7 +117,7 @@ export default function Hero({ hero, siteConfig }: HeroProps) {
           transition={{ delay: 1, duration: 0.6 }}
           className="mt-12 text-white/60 text-sm tracking-widest uppercase"
         >
-          &ldquo;{siteConfig?.slogan}&rdquo;
+          &ldquo;{SITE_CONFIG.slogan}&rdquo;
         </motion.p>
       </div>
 

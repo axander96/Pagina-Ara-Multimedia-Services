@@ -2,28 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { CONTACT_CONFIG, SITE_CONFIG } from '@/lib/config'
 
-interface ContactProps {
-  contact: {
-    title: string
-    subtitle: string
-    emailPlaceholder: string
-    messagePlaceholder: string
-    buttonText: string
-    pulse: {
-      projects: string
-      growth: string
-      response: string
-    }
-  }
-  siteConfig: {
-    email: string
-    phone: string
-    whatsapp: string
-  }
-}
-
-export default function Contact({ contact, siteConfig }: ContactProps) {
+export default function Contact() {
+  const contact = CONTACT_CONFIG
   const [formData, setFormData] = useState({ email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -100,14 +82,14 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
             <div className="flex flex-col gap-4">
               <input
                 type="email"
-                placeholder={contact?.emailPlaceholder || "Tu correo electrónico"}
+                placeholder={contact.emailPlaceholder}
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 className="w-full px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-[#FF4433] focus:ring-2 focus:ring-[#FF4433]/50 transition-all"
               />
               <textarea
-                placeholder={contact?.messagePlaceholder || "Cuéntanos sobre tu proyecto..."}
+                placeholder={contact.messagePlaceholder}
                 rows={4}
                 required
                 value={formData.message}
@@ -118,7 +100,7 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
                 type="submit"
                 className="px-8 py-4 bg-gradient-to-r from-[#FF4433] to-[#0066FF] text-white font-bold rounded-full hover:shadow-2xl hover:shadow-red-500/40 transition-all transform hover:-translate-y-1"
               >
-                {submitted ? '¡Enviado!' : (contact?.buttonText || "Quiero mi propuesta")}
+                {submitted ? '¡Enviado!' : contact.buttonText}
               </button>
             </div>
           </motion.form>
@@ -164,9 +146,9 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
               <span className="font-bold text-[#003D99] text-sm">ARA Pulse</span>
             </div>
             <div className="space-y-2 text-sm text-gray-600">
-              <p>🔥 <span className="font-semibold text-[#FF4433]">{contact?.pulse?.projects}</span> en desarrollo hoy</p>
-              <p>📈 <span className="font-semibold text-[#0066FF]">{contact?.pulse?.growth}</span> crecimiento promedio</p>
-              <p>⚡ Respuesta en <span className="font-semibold">{contact?.pulse?.response}</span></p>
+              <p>🔥 <span className="font-semibold text-[#FF4433]">{contact.pulse.projects}</span> en desarrollo hoy</p>
+              <p>📈 <span className="font-semibold text-[#0066FF]">{contact.pulse.growth}</span> crecimiento promedio</p>
+              <p>⚡ Respuesta en <span className="font-semibold">{contact.pulse.response}</span></p>
             </div>
           </div>
         </div>

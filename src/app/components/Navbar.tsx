@@ -2,31 +2,17 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { urlFor } from '@/lib/sanity'
+import { SITE_CONFIG } from '@/lib/config'
 
 interface NavbarProps {
-  siteConfig: {
-    logo?: any
-    logoImage?: any
-    slogan?: string
-  }
   heroCta?: string
 }
 
-export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
+export default function Navbar({ heroCta }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
-  // Verificar cualquier campo de logo disponible
-  let logoUrl = urlFor(siteConfig?.logo) || urlFor(siteConfig?.logoImage)
-  
-  // Fallback temporal con URL directa si Sanity no funciona
-  if (!logoUrl) {
-    logoUrl = 'https://cdn.sanity.io/images/ddona00k/production/06fc5021a828e6fb57e1595c1513ce0b4169f14b-899x202.png'
-  }
-  
-  console.log('=== DEBUG NAVBAR ===')
-  console.log('logoUrl final:', logoUrl)
+  const logoUrl = SITE_CONFIG.logo
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +65,7 @@ export default function Navbar({ siteConfig, heroCta }: NavbarProps) {
                 href="#contacto"
                 className="px-6 py-3 bg-gradient-to-r from-[#FF4433] to-[#0066FF] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-red-500/30 transition-all"
               >
-                {heroCta || 'Cotizar Proyecto'}
+                {heroCta || 'Comienza tu proyecto'}
               </a>
             </div>
             

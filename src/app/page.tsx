@@ -1,13 +1,10 @@
 import { client } from '@/lib/sanity'
 import {
-  siteConfigQuery,
-  heroQuery,
   servicesQuery,
   projectsQuery,
   processStepsQuery,
   testimonialsQuery,
   aboutQuery,
-  contactQuery,
 } from '@/lib/queries'
 
 import Navbar from './components/Navbar'
@@ -23,38 +20,32 @@ import Footer from './components/Footer'
 export const revalidate = 10 // Revalidar cada 10 segundos para ver cambios de Sanity más rápido
 
 export default async function Home() {
-  // Fetch all data from Sanity
+  // Fetch only dynamic content from Sanity
   const [
-    siteConfig,
-    hero,
     services,
     projects,
     processSteps,
     testimonials,
     about,
-    contact,
   ] = await Promise.all([
-    client.fetch(siteConfigQuery),
-    client.fetch(heroQuery),
     client.fetch(servicesQuery),
     client.fetch(projectsQuery),
     client.fetch(processStepsQuery),
     client.fetch(testimonialsQuery),
     client.fetch(aboutQuery),
-    client.fetch(contactQuery),
   ])
 
   return (
     <main className="min-h-screen">
-      <Navbar siteConfig={siteConfig} heroCta={hero?.ctaPrimary} />
-      <Hero hero={hero} siteConfig={siteConfig} />
+      <Navbar />
+      <Hero />
       <Services services={services} />
       <Projects projects={projects} />
       <Process steps={processSteps} />
       <About about={about} />
       <Testimonials testimonials={testimonials} />
-      <Contact contact={contact} siteConfig={siteConfig} />
-      <Footer siteConfig={siteConfig} />
+      <Contact />
+      <Footer />
     </main>
   )
 }
