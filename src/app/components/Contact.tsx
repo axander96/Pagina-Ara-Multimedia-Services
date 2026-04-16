@@ -8,6 +8,8 @@ export default function Contact() {
   const contact = CONTACT_CONFIG
   const [formData, setFormData] = useState({ email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [mounted, setMounted] = useState(false)
   const [showPulse, setShowPulse] = useState(true)
 
@@ -27,11 +29,32 @@ export default function Contact() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Aquí puedes agregar la lógica para enviar el formulario
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+    setLoading(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      
+      const data = await response.json()
+      
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ email: '', message: '' })
+        setTimeout(() => setSubmitted(false), 5000)
+      } else {
+        setError(data.error || 'Error al enviar el mensaje')
+      }
+    } catch (err) {
+      setError('Error de conexión. Inténtalo de nuevo.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -96,11 +119,15 @@ export default function Contact() {
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
                 className="w-full px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-[#FF4433] focus:ring-2 focus:ring-[#FF4433]/50 transition-all resize-none"
               />
+              {error && (
+                <p className="text-red-400 text-sm">{error}</p>
+              )}
               <button
                 type="submit"
-                className="px-8 py-4 bg-gradient-to-r from-[#FF4433] to-[#0066FF] text-white font-bold rounded-full hover:shadow-2xl hover:shadow-red-500/40 transition-all transform hover:-translate-y-1"
+                disabled={loading}
+                className="px-8 py-4 bg-gradient-to-r from-[#FF4433] to-[#0066FF] text-white font-bold rounded-full hover:shadow-2xl hover:shadow-red-500/40 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitted ? '¡Enviado!' : contact.buttonText}
+                {loading ? 'Enviando...' : submitted ? '¡Enviado!' : contact.buttonText}
               </button>
             </div>
           </motion.form>
