@@ -67,24 +67,24 @@ export default function Footer() {
           <p className="text-white/40 text-sm">
             © {currentYear} ARA Multimedia Services. Todos los derechos reservados.
           </p>
-          <p className="text-white/30 text-xs mt-2">
+          <p className="text-white/50 text-sm mt-1">
             República Dominicana
           </p>
-          <div className="flex items-center justify-center gap-6 mt-4">
+          <div className="flex items-center justify-center gap-1 mt-2">
             <a 
               href="/terminos" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              className="text-white/40 hover:text-white/70 text-xs transition-colors"
             >
               Términos de Uso
             </a>
-            <span className="text-white/20">|</span>
+            <span className="text-white/20 text-xs">|</span>
             <a 
               href="/privacidad" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              className="text-white/40 hover:text-white/70 text-xs transition-colors"
             >
               Políticas de Privacidad
             </a>
