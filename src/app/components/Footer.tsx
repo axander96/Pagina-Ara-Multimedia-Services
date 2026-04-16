@@ -68,7 +68,7 @@ export default function Footer() {
             © {currentYear} ARA Multimedia Services. Todos los derechos reservados.
           </p>
           <p className="text-white/50 text-sm mt-1">
-            República Dominicana
+            Monseñor Nouel, República Dominicana
           </p>
           <div className="flex items-center justify-center gap-1 mt-2">
             <a 

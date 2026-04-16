@@ -26,7 +26,7 @@ export default function PrivacidadPage() {
             <section>
               <h2 className="text-2xl font-bold text-[#003D99] mb-4">2. Responsable del Tratamiento de Datos</h2>
               <p><strong>Responsable:</strong> ARA Multimedia Services<br />
-              <strong>Dirección:</strong> República Dominicana<br />
+              <strong>Dirección:</strong> Monseñor Nouel, República Dominicana<br />
               <strong>Email:</strong> Info@aramultimedias.com<br />
               <strong>Teléfono:</strong> +1 849 565-0087</p>
               <p className="mt-4">Para ejercer sus derechos de protección de datos, contáctenos a través de los medios indicados.</p>
@@ -227,7 +227,7 @@ export default function PrivacidadPage() {
               <p>Si tiene preguntas sobre esta Política de Privacidad o desea ejercer sus derechos, contáctenos:</p>
               <p className="mt-2">
                 <strong>ARA Multimedia Services</strong><br />
-                República Dominicana<br />
+                Monseñor Nouel, República Dominicana<br />
                 Email: Info@aramultimedias.com<br />
                 Teléfono: +1 849 565-0087
               </p>

@@ -19,7 +19,7 @@ export default function TerminosPage() {
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <section>
               <h2 className="text-2xl font-bold text-[#003D99] mb-4">1. Aceptación de los Términos</h2>
-              <p>Al acceder y utilizar los servicios de ARA Multimedia Services, usted acepta estar sujeto a estos Términos de Uso. Si no está de acuerdo con alguna parte de estos términos, no podrá utilizar nuestros servicios. Estos términos constituyen un acuerdo legalmente vinculante entre usted y ARA Multimedia Services, conforme a las leyes de la República Dominicana.</p>
+              <p>Al acceder y utilizar los servicios de ARA Multimedia Services, usted acepta estar sujeto a estos Términos de Uso. Si no está de acuerdo con alguna parte de estos términos, no podrá utilizar nuestros servicios. Estos términos constituyen un acuerdo legalmente vinculante entre usted y ARA Multimedia Services, conforme a las leyes de la Monseñor Nouel, República Dominicana.</p>
             </section>
 
             <section>
