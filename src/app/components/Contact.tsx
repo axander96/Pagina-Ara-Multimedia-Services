@@ -131,7 +131,7 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <a 
-              href={`https://wa.me/${siteConfig?.whatsapp}`} 
+              href="https://wa.me/18495650087" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-white/80 hover:text-green-400 transition-colors"
@@ -140,18 +140,18 @@ export default function Contact({ contact, siteConfig }: ContactProps) {
               <span>WhatsApp Business</span>
             </a>
             <a 
-              href={`tel:${siteConfig?.phone}`}
+              href="tel:+18495650087"
               className="flex items-center space-x-2 text-white/80 hover:text-[#0066FF] transition-colors"
             >
               <i className="fa-solid fa-phone text-xl"></i>
-              <span>Llámanos</span>
+              <span>+1 849 565-0087</span>
             </a>
             <a 
-              href={`mailto:${siteConfig?.email}`}
+              href="mailto:Info@aramultimedias.com"
               className="flex items-center space-x-2 text-white/80 hover:text-[#FF4433] transition-colors"
             >
               <i className="fa-solid fa-envelope text-xl"></i>
-              <span>{siteConfig?.email}</span>
+              <span>Info@aramultimedias.com</span>
             </a>
           </motion.div>
         </div>
