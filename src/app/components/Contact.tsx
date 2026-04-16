@@ -48,7 +48,7 @@ export default function Contact() {
         setFormData({ email: '', message: '' })
         setTimeout(() => setSubmitted(false), 5000)
       } else {
-        setError(data.error || 'Error al enviar el mensaje')
+        setError(data.error || 'Error al enviar el mensaje. Intenta de nuevo.')
       }
     } catch (err) {
       setError('Error de conexión. Inténtalo de nuevo.')

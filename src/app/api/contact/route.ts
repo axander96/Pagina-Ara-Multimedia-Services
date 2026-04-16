@@ -36,6 +36,7 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: 'ARA Multimedia <onboarding@resend.dev>',
       to: ['Info@aramultimedias.com'],
+      replyTo: email,
       subject: 'Nueva solicitud de propuesta - ARA Multimedia',
       html: `
         <h2>Nueva solicitud de propuesta</h2>
@@ -45,13 +46,12 @@ export async function POST(request: Request) {
         <hr />
         <p>Enviado desde: aramultimedias.com</p>
       `,
-      replyTo: email,
     })
 
     if (error) {
-      console.error('Error enviando email:', error)
+      console.error('Error detallado de Resend:', error)
       return Response.json(
-        { error: 'Error al enviar el mensaje' },
+        { error: `Error: ${error.message || 'Error al enviar'}` },
         { status: 500 }
       )
     }
@@ -61,10 +61,10 @@ export async function POST(request: Request) {
       { status: 200 }
     )
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error en API:', error)
     return Response.json(
-      { error: 'Error interno del servidor' },
+      { error: `Error: ${error.message || 'Error interno'}` },
       { status: 500 }
     )
   }
