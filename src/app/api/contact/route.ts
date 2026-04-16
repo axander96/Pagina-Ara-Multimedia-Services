@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 
     // Enviar email
     const { data, error } = await resend.emails.send({
-      from: 'ARA Multimedia <onboarding@resend.dev>',
+      from: 'ARA Multimedia <info@aramultimedias.com>',
       to: ['Info@aramultimedias.com'],
       replyTo: email,
       subject: 'Nueva solicitud de propuesta - ARA Multimedia',
