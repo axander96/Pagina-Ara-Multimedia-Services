@@ -26,7 +26,7 @@ export const HERO_CONFIG = {
 // Contact section
 export const CONTACT_CONFIG = {
   title: '¿LISTO PARA TU <span class="text-[#FF4433]">EVOLUCIÓN</span> DIGITAL?',
-  subtitle: 'Cuéntanos tu idea y te ayudamos a hacerla realidad',
+  subtitle: 'Cuéntanos sobre tu proyecto y te contactaremos en menos de 24 horas con una propuesta personalizada.',
   emailPlaceholder: 'Tu correo electrónico',
   messagePlaceholder: 'Cuéntanos sobre tu proyecto...',
   buttonText: 'Quiero mi propuesta',
