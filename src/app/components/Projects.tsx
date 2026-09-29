@@ -72,7 +72,7 @@ export default function Projects({ projects }: ProjectsProps) {
                       src={imageUrl}
                       alt={project.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="object-contain bg-[#F5F7FA] group-hover:scale-[1.03] transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function Projects({ projects }: ProjectsProps) {
                         src={item.asset?.url || ''}
                         alt={`${selectedProject.title} - imagen ${index + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-contain bg-[#F5F7FA]"
                       />
                     </div>
                   ))}
