@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -26,6 +26,35 @@ interface ProjectsProps {
 
 export default function Projects({ projects }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+
+  const selectedImages = selectedProject
+    ? [selectedProject.image, ...(selectedProject.gallery || [])].filter(
+        (item): item is ProjectImage => Boolean(item?.asset?.url),
+      )
+    : []
+
+  useEffect(() => {
+    if (!selectedProject || selectedImages.length < 2) return
+
+    const interval = window.setInterval(() => {
+      setSelectedImageIndex((currentIndex) => (currentIndex + 1) % selectedImages.length)
+    }, 4500)
+
+    return () => window.clearInterval(interval)
+  }, [selectedProject, selectedImages.length])
+
+  function openProject(project: Project) {
+    setSelectedProject(project)
+    setSelectedImageIndex(0)
+  }
+
+  function changeSelectedImage(direction: number) {
+    setSelectedImageIndex((currentIndex) => {
+      if (!selectedImages.length) return 0
+      return (currentIndex + direction + selectedImages.length) % selectedImages.length
+    })
+  }
 
   return (
     <section id="portafolio" className="py-20 lg:py-32 bg-white">
@@ -47,7 +76,7 @@ export default function Projects({ projects }: ProjectsProps) {
             return <motion.button
               type="button"
               key={project._id}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => openProject(project)}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -114,22 +143,32 @@ export default function Projects({ projects }: ProjectsProps) {
               ×
             </button>
             <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="bg-[#F5F7FA] p-4 sm:p-6 space-y-4">
-                {[selectedProject.image, ...(selectedProject.gallery || [])]
-                  .filter((item): item is ProjectImage => Boolean(item?.asset?.url))
-                  .map((item, index) => (
-                    <div key={`${item.asset?.url}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                      <Image
-                        src={item.asset?.url || ''}
-                        alt={`${selectedProject.title} - imagen ${index + 1}`}
-                        fill
-                        className="object-contain bg-[#F5F7FA]"
-                      />
-                    </div>
-                  ))}
-                {!selectedProject.image?.asset?.url && !selectedProject.gallery?.length && (
+              <div className="bg-[#F5F7FA] p-4 sm:p-6">
+                {selectedImages.length > 0 ? (
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl" onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)} onPointerUp={(event) => { if (event.clientX - event.currentTarget.getBoundingClientRect().left < event.currentTarget.clientWidth / 2) changeSelectedImage(-1); else changeSelectedImage(1) }}>
+                    <Image
+                      src={selectedImages[selectedImageIndex].asset?.url || ''}
+                      alt={`${selectedProject.title} - imagen ${selectedImageIndex + 1}`}
+                      fill
+                      className="object-contain bg-[#F5F7FA]"
+                    />
+                    {selectedImages.length > 1 && (
+                      <>
+                        <button type="button" onClick={() => changeSelectedImage(-1)} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 text-[#003D99] text-2xl shadow-md" aria-label="Imagen anterior">‹</button>
+                        <button type="button" onClick={() => changeSelectedImage(1)} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 text-[#003D99] text-2xl shadow-md" aria-label="Imagen siguiente">›</button>
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                          {selectedImages.map((item, index) => (
+                            <button key={`${item.asset?.url}-${index}`} type="button" onClick={() => setSelectedImageIndex(index)} className={`w-2.5 h-2.5 rounded-full ${index === selectedImageIndex ? 'bg-[#FF4433]' : 'bg-white/80'}`} aria-label={`Ver imagen ${index + 1}`} />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <div className="aspect-[4/3] rounded-xl bg-gray-200 flex items-center justify-center text-gray-500">
                   <div className="aspect-[4/3] rounded-xl bg-gray-200 flex items-center justify-center text-gray-500">
                     Este proyecto aún no tiene imágenes.
+                  </div>
                   </div>
                 )}
               </div>
