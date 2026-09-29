@@ -32,6 +32,20 @@ export default {
       },
     },
     {
+      name: 'gallery',
+      title: 'Galería de imágenes',
+      type: 'array',
+      of: [{type: 'image', options: {hotspot: true}}],
+      description: 'Imágenes adicionales que se mostrarán al abrir el proyecto.',
+    },
+    {
+      name: 'description',
+      title: 'Descripción',
+      type: 'text',
+      rows: 4,
+      description: 'Explica el proyecto, el trabajo realizado y sus resultados.',
+    },
+    {
       name: 'metric',
       title: 'Métrica / Resultado',
       type: 'string',

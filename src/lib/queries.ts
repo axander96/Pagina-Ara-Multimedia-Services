@@ -40,7 +40,9 @@ export const projectsQuery = `*[_type == "project"] | order(order asc) {
   _id,
   title,
   category,
-  image,
+  description,
+  image { asset->{url} },
+  gallery[] { asset->{url} },
   metric,
   isAraProject,
   order
