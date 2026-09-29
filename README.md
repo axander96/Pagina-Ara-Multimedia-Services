@@ -1,6 +1,6 @@
 # ARA Multimedia Services - Next.js + Sanity
 
-Sitio web profesional con CMS headless (Sanity) y despliegue en Vercel.
+Sitio web profesional con CMS headless (Sanity) y despliegue en Netlify.
 
 ## 🚀 Tecnologías
 
@@ -14,7 +14,7 @@ Sitio web profesional con CMS headless (Sanity) y despliegue en Vercel.
 
 1. Node.js 18+ instalado
 2. Cuenta en [Sanity.io](https://www.sanity.io/)
-3. Cuenta en [Vercel](https://vercel.com/)
+3. Cuenta en [Netlify](https://www.netlify.com/)
 4. Cuenta en [GitHub](https://github.com/)
 
 ## 🛠️ Configuración Local
@@ -149,7 +149,7 @@ ara-multimedia-web/
 - Estadísticas
 - Características/Diferenciadores
 
-## 🚀 Despliegue en Vercel
+## 🚀 Despliegue en Netlify
 
 ### 1. Subir a GitHub
 
@@ -162,24 +162,36 @@ git remote add origin https://github.com/tu-usuario/Pagina-Ara-Multimedia-Servic
 git push -u origin main
 ```
 
-### 2. Importar en Vercel
+### 2. Importar en Netlify
 
-1. Ve a [vercel.com](https://vercel.com)
-2. Click en **Add New Project**
-3. Importa tu repositorio de GitHub
-4. Configura las variables de entorno:
+1. Ve a [app.netlify.com](https://app.netlify.com/)
+2. Selecciona **Add new project > Import an existing project**
+3. Importa el repositorio `axander96/Pagina-Ara-Multimedia-Services` desde GitHub
+4. Netlify detectará `netlify.toml`; configura las variables de entorno:
    - `NEXT_PUBLIC_SANITY_PROJECT_ID`
    - `NEXT_PUBLIC_SANITY_DATASET`
    - `SANITY_API_TOKEN`
-5. Click en **Deploy**
+  - `RESEND_API_KEY`
+5. Haz clic en **Deploy site**
 
 ### 3. Configurar Webhook de Revalidación (Opcional)
 
-Para actualizar el sitio automáticamente cuando cambias contenido en Sanity:
+La web consulta Sanity y se revalida cada 10 segundos. Para forzar una nueva compilación cuando publiques cambios estructurales:
 
-1. En Vercel, ve a **Settings > Git** y copia el **Deploy Hook URL**
-2. En Sanity, ve a **API > Webhooks** y crea un nuevo webhook
+1. En Netlify, ve a **Project configuration > Build & deploy > Build hooks** y crea un hook
+2. En Sanity, ve a **API > Webhooks** y crea un webhook con ese hook
 3. Pega la URL del Deploy Hook
+
+### 4. Panel de administración
+
+El panel editable es Sanity Studio, no `admin/index.html` (ese archivo antiguo solo descargaba JSON localmente).
+
+```bash
+cd sanity
+npm run dev
+```
+
+También puedes publicar el Studio con `npm run deploy` desde `sanity/`. Desde el Studio puedes crear y editar proyectos, incluyendo título, categoría, imagen, métrica y orden.
 
 ## 🎨 Personalización
 
