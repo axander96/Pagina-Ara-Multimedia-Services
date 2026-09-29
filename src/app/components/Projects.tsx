@@ -13,6 +13,7 @@ interface Project {
   title: string
   category: string
   description?: string
+  projectUrl?: string
   image?: ProjectImage
   gallery?: ProjectImage[]
   metric?: string
@@ -141,6 +142,16 @@ export default function Projects({ projects }: ProjectsProps) {
                 <p className="mt-6 text-gray-600 whitespace-pre-line">
                   {selectedProject.description || 'Próximamente añadiremos la descripción de este proyecto.'}
                 </p>
+                {selectedProject.projectUrl && (
+                  <a
+                    href={selectedProject.projectUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex mt-8 px-5 py-3 bg-[#0066FF] text-white font-bold rounded-lg hover:bg-[#003D99] transition-colors"
+                  >
+                    Visitar proyecto
+                  </a>
+                )}
               </div>
             </div>
           </div>

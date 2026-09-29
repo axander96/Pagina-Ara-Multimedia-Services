@@ -46,6 +46,13 @@ export default {
       description: 'Explica el proyecto, el trabajo realizado y sus resultados.',
     },
     {
+      name: 'projectUrl',
+      title: 'Enlace del proyecto',
+      type: 'url',
+      description: 'Enlace público al sitio web o demo del proyecto. Si está vacío, no se mostrará ningún botón.',
+      validation: (Rule: any) => Rule.uri({scheme: ['http', 'https']}),
+    },
+    {
       name: 'metric',
       title: 'Métrica / Resultado',
       type: 'string',

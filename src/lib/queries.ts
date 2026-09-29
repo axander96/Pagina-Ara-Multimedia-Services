@@ -41,6 +41,7 @@ export const projectsQuery = `*[_type == "project"] | order(order asc) {
   title,
   category,
   description,
+  projectUrl,
   image { asset->{url} },
   gallery[] { asset->{url} },
   metric,
